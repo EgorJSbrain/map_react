@@ -3,8 +3,14 @@ import { useEffect, useState } from "react";
 import { PlaceType } from "./types/place";
 import { position } from "./constants/global";
 import { getPlaceAdress } from "./clientApi";
-import s from "./app.module.css";
 import { Map, Search } from "./components";
+import styled from "styled-components";
+
+const AppWrapper = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+`;
 
 const App = () => {
   const [selectPosition, setSelectPosition] = useState<PlaceType>();
@@ -29,7 +35,7 @@ const App = () => {
   };
 
   return (
-    <div className={s.appWrapper}>
+    <AppWrapper>
       <Search handleSetPosition={handleSetPosition} />
 
       {selectPosition && (
@@ -38,7 +44,7 @@ const App = () => {
           handleSetPosition={handleSetPosition}
         />
       )}
-    </div>
+    </AppWrapper>
   );
 };
 

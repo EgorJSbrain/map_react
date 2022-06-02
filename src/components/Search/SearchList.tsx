@@ -5,8 +5,17 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import styled from "styled-components";
 import { PlaceType } from "../../types/place";
-import s from "./Search.module.css";
+
+const ListWrapper = styled.div`
+  position: absolute;
+  background-color: white;
+  top: 56px;
+  max-height: 232px;
+  overflow-y: auto;
+  z-index: 1001;
+`;
 
 type SearchListProps = {
   listPlace: PlaceType[];
@@ -14,7 +23,7 @@ type SearchListProps = {
 };
 
 export const SearchList = ({ listPlace, onClick }: SearchListProps) => (
-  <div className={s.list}>
+  <ListWrapper>
     <List component="nav" aria-label="main mailbox folders">
       {listPlace.map((item) => {
         return (
@@ -34,5 +43,5 @@ export const SearchList = ({ listPlace, onClick }: SearchListProps) => (
         );
       })}
     </List>
-  </div>
+  </ListWrapper>
 );
