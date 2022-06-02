@@ -1,0 +1,17 @@
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  top: 32px;
+  width: 600px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.list {
+  background-color: white;
+  max-height: 232px;
+  overflow-y: auto;
+}

@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
-function App() {
+import { PlaceType } from "./types/place";
+import { position } from "./constants/global";
+import { getPlaceAdress } from "./clientApi";
+import s from "./app.module.css";
+import { Map, Search } from "./components";
+
+const App = () => {
+  const [selectPosition, setSelectPosition] = useState<PlaceType>();
+
+  useEffect(() => {
+    (async function () {
+      if (!selectPosition) {
+        const currentPlace: PlaceType = await getPlaceAdress(
+          position[0],
+          position[1]
+        );
+
+        if (currentPlace) {
+          handleSetPosition(currentPlace);
+        }
+      }
+    })();
+  }, []);
+
+  const handleSetPosition = (position: PlaceType) => {
+    setSelectPosition(position);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={s.appWrapper}>
+      <Search handleSetPosition={handleSetPosition} />
+      {selectPosition && (
+        <Map
+          selectPosition={selectPosition}
+          handleSetPosition={handleSetPosition}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
