@@ -1,19 +1,4 @@
-import axios from "axios";
-
-const instance = axios.create({
-  baseURL: 'https://nominatim.openstreetmap.org',
-});
-
-instance.interceptors.request.use((config) => {
-  config.params = {
-    format: "json",
-    addressdetails: '1',
-    polygon_geojson: '0',
-    ...config.params,
-  }
-
-  return config;
-});
+import { instance } from "./axios";
 
 export const searchPlaces = async (searchText: string) => {
   const { data } = await instance.get("search", {
@@ -25,11 +10,11 @@ export const searchPlaces = async (searchText: string) => {
   return data;
 };
 
-export const getPlaceAdress = async (lat: number, lng: number) => {
+export const getPlaceAdress = async (lat: number, lon: number) => {
   const { data } = await instance.get("reverse", {
     params: {
       lat,
-      lon: lng,
+      lon,
     },
   });
 
