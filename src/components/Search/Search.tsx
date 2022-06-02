@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Button, OutlinedInput } from "@mui/material";
+import { OutlinedInput } from "@mui/material";
 import { useDebouncedCallback } from 'use-debounce';
 import { searchPlaces } from "../../clientApi";
 import { PlaceType } from "../../types/place";

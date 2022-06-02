@@ -2,17 +2,17 @@ import { useCallback, useEffect } from "react";
 import {
   MapContainer,
   Marker,
-  TileLayer,
   useMap,
   useMapEvents,
 } from "react-leaflet";
 import L, { LatLngTuple } from "leaflet";
-import "leaflet/dist/leaflet.css";
-import './map.css'
 import { getPlaceAdress } from "../../clientApi";
 import { PlaceType } from "../../types/place";
 import { MarkerPopup } from "./MarkerPopup";
-import { POSITION_CENTER } from "../../constants/global";
+import { MapLayer } from "../MapLayer";
+import { POSITION_CENTER } from "../../constants";
+import "leaflet/dist/leaflet.css";
+import './map.css'
 
 const icon = L.icon({
   iconUrl: "./placeholder.png",
@@ -64,8 +64,7 @@ const MapEvents = ({selectPosition, handleSetPosition}: MapProps) => {
 
   return null;
 }
-const k = process.env
-console.log("🚀 ~ file: Map.tsx ~ line 68 ~ k", k)
+
 export const Map = ({selectPosition, handleSetPosition}: MapProps) => {
   const locationSelection: LatLngTuple = [Number(selectPosition.lat), Number(selectPosition.lon)];
 
@@ -74,10 +73,7 @@ export const Map = ({selectPosition, handleSetPosition}: MapProps) => {
       center={POSITION_CENTER}
       zoom={8}
     >
-      <TileLayer
-         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-         url="https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=hbtgKuT3RSXT7vjDhc1z"
-      />
+      <MapLayer />
       {selectPosition && (
         <Marker position={locationSelection} icon={icon}>
           <MarkerPopup selectPosition={selectPosition} />

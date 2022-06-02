@@ -31,6 +31,7 @@ const App = () => {
   return (
     <div className={s.appWrapper}>
       <Search handleSetPosition={handleSetPosition} />
+
       {selectPosition && (
         <Map
           selectPosition={selectPosition}
