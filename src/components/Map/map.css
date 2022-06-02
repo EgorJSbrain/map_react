@@ -1,4 +1,11 @@
 .leaflet-container {
-  height: calc(100vh - 152px);
+  height: calc(100vh - 188px);
   width: 100vw;
+
+}
+
+@media (min-width: 720px) {
+  .leaflet-container {
+    height: calc(100vh - 212px);
+  }
 }

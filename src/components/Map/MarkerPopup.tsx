@@ -8,9 +8,8 @@ type MarkerPopupProps = {
 export const MarkerPopup = ({ selectPosition }: MarkerPopupProps) => (
   <Popup>
     {`${selectPosition.address.country || ""}${
-      selectPosition.address.city
-      ? ", " + selectPosition.address.city
-      : ""}${
+      selectPosition.address.city ? ", " + selectPosition.address.city : ""
+    }${selectPosition.address.town ? ", " + selectPosition.address.town : ""}${
       selectPosition.address.village
         ? ", " + selectPosition.address.village
         : ""
