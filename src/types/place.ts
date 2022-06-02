@@ -9,6 +9,7 @@ type AddressType = {
   suburb?: string;
   village?: string;
   leisure?: string;
+  town?: string;
   'ISO3166-2-lvl6'?: string;
 }
 

@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { OutlinedInput, TextField } from "@mui/material";
+import { useCallback, useState } from "react";
+import { TextField } from "@mui/material";
 import { useDebouncedCallback } from 'use-debounce';
 import styled from "styled-components";
 import { searchPlaces } from "../../clientApi";
@@ -13,12 +13,22 @@ type SearchProps = {
 
 const Input = styled(TextField)`
   width: 100%;
+
+  @media (max-width: 720px) {
+    .MuiInput-input {
+      padding: 4px 12px 5px;
+    }
+  }
 `
 
 const SearchWrapper = styled.div`
   position: relative;
   margin: 40px auto;
   max-width: 1000px;
+
+  @media (min-width: 720px) {
+    padding: 0 24px;
+  }
 `;
 
 export const Search = ({ handleSetPosition }: SearchProps) => {
