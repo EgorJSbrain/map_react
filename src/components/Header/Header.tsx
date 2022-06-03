@@ -2,12 +2,15 @@ import { NavLink } from "react-router-dom"
 import styled from "styled-components"
 
 const HeaderWrapper = styled.div`
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #102c67;
+  background-color: #59ddff;
   padding: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
 `
 
 const Links = styled.div`
@@ -19,7 +22,7 @@ const Links = styled.div`
 
 const Link = styled(NavLink)`
   text-decoration: inherit;
-  color: #bbbff8;
+  color: #395964;
 
   :hover {
     color: white;
