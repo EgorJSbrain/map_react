@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 const HomePageWrapper = styled.div`
-  margin-top: 66px;
   background: url('./home.jpeg');
   width: 100%;
   background-color: #f1fef9;
-  height: calc(100vh - 66px);
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -69,7 +68,7 @@ export const HomePage = () => (
     <HomeTitleWrapper>
       <HomeTitle>Touch</HomeTitle>
       <HomeTitle>The World</HomeTitle>
-      <StartButton>START</StartButton>
+      <StartButton tabIndex={4}>START</StartButton>
     </HomeTitleWrapper>
   </HomePageWrapper>
 );
