@@ -1,6 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { Layout } from "./pages/Layout";
-import { SearchPage } from "./pages/SearchPage";
+import { HomePage, Layout, SearchPage } from "./pages";
 
 const App = () => {
 
@@ -8,6 +7,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="" element={<HomePage />}/>
           <Route path="search" element={<SearchPage />} />
           <Route path="dashboard" />
         </Route>
