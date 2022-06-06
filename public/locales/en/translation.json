@@ -2,5 +2,10 @@
   "startBtn": "START",
   "navHome": "HOME",
   "navMap": "MAP",
-  "navCards": "CARDS"
+  "navCards": "CARDS",
+  "modals": {
+    "userModal": {
+      "title": "Hello, friend!"
+    }
+  }
 }

@@ -19,7 +19,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
-        backgroundColor: '#ffe108',
+        marginLeft: 4,
+        backgroundImage: `url(./ru.svg)`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'left',
       },
     },
   },
@@ -41,7 +44,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundColor: 'red',
+    // marginLeft: 6,
+    backgroundImage: `url(./uk.svg)`,
+    backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'right',
     borderRadius: 20 / 2,
   },
 }));
@@ -86,7 +92,7 @@ const LangBlock = styled.div`
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const isApp = location.pathname.includes('app')
+  const isApp = location.pathname.includes('app');
 
   const changeLanguage = (checked: boolean) => {
     i18n.changeLanguage(checked ? 'en' : 'ru');

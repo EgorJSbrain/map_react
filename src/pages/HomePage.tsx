@@ -1,4 +1,7 @@
+import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import { UserModal } from "../components";
 
 const HomePageWrapper = styled.div`
   background: url('./home.jpeg');
@@ -36,39 +39,48 @@ const StartButton = styled.div`
   font-family: 'Archivo Black', sans-serif;;
   font-size: 36px;
   letter-spacing: 2px;
-  color: #1d1a39;
+  // color: #1d1a39;
   user-select: none;
-  padding-top: 20px;
+  padding-top: 6px;
   margin-top: 36px;
 
   :hover {
     cursor: pointer;
     animation-name: shake;
-    animation-duration: 3s;
+    animation-duration: .3s;
     animation-iteration-count: infinite;
   }
 
   @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(5px, 5px) rotate(5deg); }
+    50% { transform: translate(0, 0) rotate(0eg); }
+    75% { transform: translate(-5px, 5px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
   }
 `;
 
-export const HomePage = () => (
-  <HomePageWrapper>
-    <HomeTitleWrapper>
-      <HomeTitle>Touch</HomeTitle>
-      <HomeTitle>The World</HomeTitle>
-      <StartButton tabIndex={4}>START</StartButton>
-    </HomeTitleWrapper>
-  </HomePageWrapper>
-);
+export const HomePage = () => {
+  const { t } = useTranslation();
+
+  const [isModalVisible, togglemodalVisible] = useState<boolean>(false);
+
+  const handleModalVisible = useCallback(() => {
+    togglemodalVisible((isModalVisible) => !isModalVisible);
+  }, []);
+
+  return (
+    <HomePageWrapper>
+      <HomeTitleWrapper>
+        <HomeTitle>Touch</HomeTitle>
+        <HomeTitle>The World</HomeTitle>
+        <StartButton tabIndex={4} onClick={handleModalVisible}>
+          {t("startBtn")}
+        </StartButton>
+      </HomeTitleWrapper>
+      {
+        isModalVisible && <UserModal isOpen={isModalVisible} handleClose={handleModalVisible} />
+      }
+    </HomePageWrapper>
+  );
+};
