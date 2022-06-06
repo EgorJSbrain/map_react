@@ -20,7 +20,7 @@ const HomeTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 15%;
+  padding-top: 10%;
   background-color: #5a5f1a14;
 `;
 
@@ -28,21 +28,21 @@ const HomeTitle = styled.div`
   font-size: 114px;
   font-weight: 600;
   color: #fff;
+  height: 130px;
 `;
 
 const StartButton = styled.div`
   width: 240px;
-  height: 60px;
+  height: 64px;
   border-radius: 38px;
   text-align: center;
   background-color: #ffe108;
-  font-family: 'Archivo Black', sans-serif;;
+  font-weight: 700;
   font-size: 36px;
   letter-spacing: 2px;
-  // color: #1d1a39;
   user-select: none;
   padding-top: 6px;
-  margin-top: 36px;
+  margin-top: 58px;
 
   :hover {
     cursor: pointer;
@@ -78,9 +78,9 @@ export const HomePage = () => {
           {t("startBtn")}
         </StartButton>
       </HomeTitleWrapper>
-      {
-        isModalVisible && <UserModal isOpen={isModalVisible} handleClose={handleModalVisible} />
-      }
+      {isModalVisible && (
+        <UserModal isOpen={isModalVisible} handleClose={handleModalVisible} />
+      )}
     </HomePageWrapper>
   );
 };

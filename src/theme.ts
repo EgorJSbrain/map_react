@@ -1,6 +1,5 @@
 import { createTheme } from '@mui/material/styles';
 import '@fontsource/ubuntu';
-import { red } from '@mui/material/colors';
 
 const theme = createTheme({
   typography: {
