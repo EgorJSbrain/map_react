@@ -25,6 +25,7 @@
     "module-name": "^0.0.1-security",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-hook-form": "^7.31.3",
     "react-i18next": "^11.16.11",
     "react-leaflet": "^4.0.0",
     "react-router-dom": "^6.3.0",

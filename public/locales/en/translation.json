@@ -1,11 +1,20 @@
 {
   "startBtn": "START",
+  "backBtn" : "Back",
+  "nextBtn" : "Next",
+  "finishBtn" : "Finish",
   "navHome": "HOME",
   "navMap": "MAP",
   "navCards": "CARDS",
   "modals": {
     "userModal": {
-      "title": "Hello, friend!"
+      "title": "Hello!",
+      "firstName": "First name",
+      "secondName": "Second name",
+      "country": "Country",
+      "city": "City",
+      "email": "Email",
+      "password": "Password"
     }
   }
 }

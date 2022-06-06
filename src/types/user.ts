@@ -1,0 +1,8 @@
+export type UserForm = {
+  firstName: string;
+  secondName: string;
+  country: string;
+  city: string;
+  email: string;
+  password: string;
+}

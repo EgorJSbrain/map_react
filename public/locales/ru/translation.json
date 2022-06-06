@@ -1,11 +1,20 @@
 {
-  "startBtn": "START",
+  "startBtn": "НАЧАТЬ",
+  "backBtn" : "Назад",
+  "nextBtn" : "Далее",
+  "finishBtn" : "Финиш",
   "navHome": "СТАРТ",
   "navMap": "КАРТА",
   "navCards": "КАРТОЧКИ",
   "modals": {
     "userModal": {
-      "title": "Привет, друг!"
+      "title": "Привет!",
+      "firstName": "Имя",
+      "secondName": "Фамилия",
+      "country": "Страна",
+      "city": "Город",
+      "email": "Почта",
+      "password": "Пароль"
     }
   }
 }
