@@ -1,7 +1,7 @@
-import { instance } from "./axios";
+import { mapInstance } from "../axios";
 
 export const searchPlaces = async (searchText: string) => {
-  const { data } = await instance.get("search", {
+  const { data } = await mapInstance.get("search", {
     params: {
       q: searchText,
     },
@@ -11,7 +11,7 @@ export const searchPlaces = async (searchText: string) => {
 };
 
 export const getPlaceAdress = async (lat: number, lon: number) => {
-  const { data } = await instance.get("reverse", {
+  const { data } = await mapInstance.get("reverse", {
     params: {
       lat,
       lon,

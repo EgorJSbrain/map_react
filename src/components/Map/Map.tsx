@@ -6,11 +6,11 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import L, { LatLngTuple } from "leaflet";
-import { getPlaceAdress } from "../../clientApi";
 import { PlaceType } from "../../types/place";
 import { MarkerPopup } from "./MarkerPopup";
 import { MapLayer } from "../MapLayer";
 import { POSITION_CENTER } from "../../constants";
+import { getPlaceAdress } from "../../requestApi";
 import "leaflet/dist/leaflet.css";
 import './map.css'
 
