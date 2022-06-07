@@ -1,1 +1,1 @@
-export type { UserForm } from './user';
+export type { UserType } from './user';

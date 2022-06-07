@@ -2,10 +2,10 @@ import { useCallback, useState } from "react";
 import { TextField } from "@mui/material";
 import { useDebouncedCallback } from 'use-debounce';
 import styled from "styled-components";
-import { searchPlaces } from "../../clientApi";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../utils/useCheckScreenSize";
+import { searchPlaces } from "../../requestApi";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void

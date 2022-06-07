@@ -1,4 +1,4 @@
-export type UserForm = {
+export type UserType = {
   firstName: string;
   secondName: string;
   country: string;

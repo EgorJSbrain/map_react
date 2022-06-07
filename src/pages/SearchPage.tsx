@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { getPlaceAdress } from "../clientApi";
 import { Map, Search } from "../components";
 import { position } from "../constants";
+import { getPlaceAdress } from "../requestApi";
 import { PlaceType } from "../types/place";
 
 const AppWrapper = styled.div`

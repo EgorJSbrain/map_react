@@ -1,0 +1,1 @@
+export { searchPlaces, getPlaceAdress } from './map'

@@ -8,7 +8,7 @@ import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { UserForm } from "../../../types";
+import { UserType } from "../../../types";
 import { UserModalForm } from "./UserModalForm";
 import { UserModalStepper } from "./UserModalStepper";
 
@@ -38,7 +38,7 @@ export const UserModal = ({ isOpen, handleClose }: UserModalProps) => {
     control,
     formState: { errors, isValid },
     handleSubmit,
-  } = useForm<UserForm>({
+  } = useForm<UserType>({
     mode: "onChange",
   });
 
@@ -53,7 +53,7 @@ export const UserModal = ({ isOpen, handleClose }: UserModalProps) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-  const onSubmit = useCallback((data: UserForm) => {
+  const onSubmit = useCallback((data: UserType) => {
     localStorage.setItem('user', JSON.stringify(data));
     handleClose();
   }, []);

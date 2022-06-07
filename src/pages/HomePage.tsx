@@ -1,7 +1,9 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { UserModal } from "../components";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { fetchUser } from "../store/reducers/actionCreators";
 
 const HomePageWrapper = styled.div`
   background: url('./home.jpeg');
@@ -64,9 +66,15 @@ export const HomePage = () => {
   const { t } = useTranslation();
 
   const [isModalVisible, togglemodalVisible] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const { user, isLoading, error } = useAppSelector(state => state.userReducer)
 
   const handleModalVisible = useCallback(() => {
     togglemodalVisible((isModalVisible) => !isModalVisible);
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchUser());
   }, []);
 
   return (
