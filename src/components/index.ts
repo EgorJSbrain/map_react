@@ -1,4 +1,4 @@
 export { Search } from './Search/index';
 export { Map } from './Map/index';
 export { Header } from './Header/index';
-export { UserModal } from './Modals';
+export { StartModal } from './Modals';

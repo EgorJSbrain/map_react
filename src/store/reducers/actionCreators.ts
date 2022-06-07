@@ -4,7 +4,11 @@ import axios from "axios";
 export const fetchUser = createAsyncThunk(
   'user/fetch',
   async (_, thunkApi) => {
-    const res = await axios.get('http://localhost:3008/profile');
-    return res.data
+    try {
+      const res = await axios.get('http://localhost:3008/profile');
+      return res.data
+    } catch (e) {
+      thunkApi.rejectWithValue('Some problem')
+    }
   }
 )

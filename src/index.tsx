@@ -5,10 +5,8 @@ import App from "./App";
 import "./i18n";
 import { ThemeProvider } from "@mui/material";
 import theme from "./theme";
-import { setupStore } from "./store/store";
+import { store } from "./store/store";
 import { Provider } from "react-redux";
-
-const store = setupStore();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

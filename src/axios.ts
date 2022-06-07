@@ -1,10 +1,13 @@
 import axios from "axios";
 
-export const mapInstance = axios.create({
-  baseURL: 'https://nominatim.openstreetmap.org',
+export const mapBaseUrl = 'https://nominatim.openstreetmap.org';
+export const baseUrl = 'http://localhost:3008';
+
+export const instanceMapApi = axios.create({
+  baseURL: mapBaseUrl,
 });
 
-mapInstance.interceptors.request.use((config) => {
+instanceMapApi.interceptors.request.use((config) => {
   config.params = {
     format: "json",
     addressdetails: '1',
@@ -15,6 +18,6 @@ mapInstance.interceptors.request.use((config) => {
   return config;
 });
 
-export const instance = axios.create({
-  baseURL: 'http://localhost:3008',
+export const instanceApi = axios.create({
+  baseURL: baseUrl,
 });
