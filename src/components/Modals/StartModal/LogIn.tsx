@@ -19,7 +19,7 @@ const LogInBtnWrapper = styled.div`
 `
 
 type LogInProps = {
-  control: Control<UserType, any>;
+  control: Control<any, any>;
   isValid: boolean;
   translate: TFunction<"translation", undefined>;
 }

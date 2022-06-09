@@ -7,27 +7,22 @@ type UserData = {
 }
 
 export const authAPI = createApi({
-  reducerPath: 'authAPI',
-  baseQuery: fetchBaseQuery({baseUrl: baseUrl}),
+  reducerPath: "authAPI",
+  baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (build) => ({
-    fetchAllUsers: build.query({
-      query: () => ({
-        url: '/profiles'
-      })
-    }),
     fetchLogIn: build.mutation<UserData, any>({
       query: (data: UserData) => ({
-        url: '/profiles',
-        method: 'PUT',
+        url: "/profile",
+        method: "POST",
         body: data,
-      })
+      }),
     }),
     fetchLogOut: build.mutation({
       query: (data: {}) => ({
-        url: '/profiles',
-        method: 'PUT',
+        url: "/profiles",
+        method: "POST",
         body: data,
-      })
+      }),
     }),
-  })
+  }),
 });

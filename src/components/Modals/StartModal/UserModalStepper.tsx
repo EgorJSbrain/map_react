@@ -35,7 +35,7 @@ export const UserModalStepper = ({activeStep}: UserModalStepperProps) => {
 
         return (
           <Step
-            key={label}
+            key={index}
             {...stepProps}
           >
             <StepLabel {...labelProps} />

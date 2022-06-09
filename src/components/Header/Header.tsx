@@ -1,79 +1,35 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
-import { Switch } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+// import LoginIcon from '@mui/icons-material/Login';
+import { LangSwither } from "./LangSwither";
+import { useCallback } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { userAPI } from "../../services/UserService";
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-  width: 62,
-  height: 34,
-  padding: 7,
-  '& .MuiSwitch-switchBase': {
-    margin: 1,
-    padding: 0,
-    transform: 'translateX(6px)',
-    '&.Mui-checked': {
-      color: '#fff',
-      transform: 'translateX(22px)',
-      '& .MuiSwitch-thumb:before': {
-        backgroundImage: `url(./uk.svg)`,
-      },
-      '& + .MuiSwitch-track': {
-        opacity: 1,
-        marginLeft: 4,
-        backgroundImage: `url(./ru.svg)`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'left',
-      },
-    },
-  },
-  '& .MuiSwitch-thumb': {
-    backgroundColor: '#ffe108',
-    width: 32,
-    height: 32,
-    '&:before': {
-      content: "''",
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      left: 0,
-      top: 0,
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-      backgroundImage: `url(./ru.svg)`,
-    },
-  },
-  '& .MuiSwitch-track': {
-    opacity: 1,
-    // marginLeft: 6,
-    backgroundImage: `url(./uk.svg)`,
-    backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'right',
-    borderRadius: 20 / 2,
-  },
-}));
-
-const HeaderWrapper = styled.header<{isApp: boolean}>`
+const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => (props.isApp ? `transparent` : `#59ddff`)};;
+  background-color: ${(props) => (props.isApp ? `transparent` : `#59ddff`)};
   padding: 24px;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-`
+`;
 
 const Links = styled.div`
   width: 232px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
-const Link = styled(NavLink)<{isApp: boolean}>`
+const Link = styled(NavLink)`
   text-decoration: inherit;
-  color: ${props => props.isApp ? '#88f1ff' : '#395964'};
+  color: "#395964";
 
   :hover {
     color: white;
@@ -82,36 +38,59 @@ const Link = styled(NavLink)<{isApp: boolean}>`
   &.active {
     color: white;
   }
-`
+`;
 
 const LangBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  right: 0;
-`
+  right: 16px;
+  top: 16px;
+`;
+
+const LogOut = styled(LogoutIcon)`
+  color: #88f1ff;
+
+  :hover {
+    cursor: pointer;
+    color: #fff;
+  }
+`;
 
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const isApp = location.pathname.includes('app');
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { user } = useAppSelector(state => state.userReducer)
+  const [ logOut ] = userAPI.useFetchLogOutMutation();
 
-  const changeLanguage = (checked: boolean) => {
-    i18n.changeLanguage(checked ? 'en' : 'ru');
-  };
+  const isApp = location.pathname.includes("app");
+
+  const hnadleChangeLanguage = useCallback((checked: boolean) => {
+    i18n.changeLanguage(checked ? "en" : "ru");
+  }, []);
+
+  const handleLogOut = useCallback(() => {
+    // dispatch(userLogOut);
+    logOut({});
+    navigate("/app");
+  }, []);
 
   return (
     <HeaderWrapper isApp={isApp}>
-      <Links>
-        <Link to="/app" isApp={isApp}>{t('navHome')}</Link>
-        <Link to="/search" isApp={isApp}>{t('navMap')}</Link>
-        <Link to="/dashboard" isApp={isApp}>{t('navCards')}</Link>
-      </Links>
-      <LangBlock>
-        <MaterialUISwitch
-          sx={{ m: 1 }}
-          defaultChecked
-          onChange={(e, checked) => changeLanguage(checked)}
-        />
+      {!isApp && (
+        <Links>
+          <Link to="/app">{t("navHome")}</Link>
+          <Link to="/search">{t("navMap")}</Link>
+          <Link to="/dashboard">{t("navCards")}</Link>
+        </Links>
+      )}
+      <LangBlock onClick={handleLogOut}>
+        {user && <LogOut />}
+        <LangSwither changeLanguage={hnadleChangeLanguage} />
       </LangBlock>
     </HeaderWrapper>
   );
-}
+};

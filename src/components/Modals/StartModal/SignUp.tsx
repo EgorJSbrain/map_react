@@ -6,6 +6,8 @@ import styled from "styled-components";
 import { UserType } from "../../../types";
 import { UserModalForm } from "./UserModalForm";
 import { UserModalStepper } from "./UserModalStepper";
+import { PlaceType } from "../../../types/place";
+import { UserFormType } from "./StartModal";
 
 const STEPS_AMOUNT = 3;
 
@@ -15,15 +17,17 @@ const ButtonsBlock = styled(Box)`
 `;
 
 type SignUpProps = {
-  control: Control<UserType, any>;
+  control: Control<UserFormType, any>;
   isValid: boolean;
   translate: TFunction<"translation", undefined>;
+  handleSetUserAddress: (address: PlaceType) => void;
 };
 
 export const SignUp = ({
   control,
   isValid,
   translate,
+  handleSetUserAddress,
 }: SignUpProps) => {
   const [activeStep, setActiveStep] = useState(0);
   const [skipped, setSkipped] = useState(new Set<number>());
@@ -46,6 +50,7 @@ export const SignUp = ({
         tabIndex={activeStep}
         control={control}
         translate={translate}
+        handleSetUserAddress={handleSetUserAddress}
       />
 
       <ButtonsBlock>
