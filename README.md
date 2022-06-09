@@ -44,3 +44,22 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+## Start server
+
+Add npm install -g json-server
+
+
+Create a db.json file with some data
+{
+  "posts": [
+    { "id": 1, "title": "json-server", "author": "typicode" }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "postId": 1 }
+  ],
+  "profile": { "name": "typicode" }
+}
+
+json-server --watch db.json --port 3008

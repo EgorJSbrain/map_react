@@ -1,38 +1,28 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { authAPI } from "../../services/AuthService";
 import { UserType } from "../../types";
-import { fetchUser } from "./actionCreators";
 
 interface UserState {
   user: UserType | null;
-  isLoading: boolean;
-  error: string;
 }
 
 const initialState: UserState = {
   user: null,
-  isLoading: false,
-  error: '',
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
-  extraReducers: {
-    [fetchUser.fulfilled.type]: (state, action: PayloadAction<any>) => {
-      state.isLoading = false;
-      state.error = '';
-      state.user = action.payload;
-    },
-    [fetchUser.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [fetchUser.rejected.type]: (state, action: PayloadAction<string>) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-  }
+  extraReducers:
+  (builder) => {
+    builder.addMatcher(
+      authAPI.endpoints.fetchLogIn.matchFulfilled,
+      (state, { payload }) => {
+        state.user = payload as UserType
+      }
+    )
+  },
 })
-
 
 export default userSlice.reducer;

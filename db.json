@@ -1,20 +1,40 @@
 {
-  "posts": [
+  "points": [],
+  "users": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "firstName": "d",
+      "secondName": "f",
+      "address": {
+        "place_id": 282307092,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. https://osm.org/copyright",
+        "osm_type": "relation",
+        "osm_id": 7462,
+        "boundingbox": [
+          "46.5539531",
+          "47.5799614",
+          "5.6987633",
+          "7.0623707"
+        ],
+        "lat": "47.06699155",
+        "lon": "6.235622772820445",
+        "display_name": "Ду, Бургундия — Франш-Конте, Метрополия Франции, Франция",
+        "class": "boundary",
+        "type": "administrative",
+        "importance": 0.6172419929121917,
+        "icon": "https://nominatim.openstreetmap.org/ui/mapicons/poi_boundary_administrative.p.20.png",
+        "address": {
+          "county": "Ду",
+          "state": "Бургундия — Франш-Конте",
+          "ISO3166-2-lvl4": "FR-BFC",
+          "region": "Метрополия Франции",
+          "country": "Франция",
+          "country_code": "fr"
+        }
+      },
+      "email": "dfd",
+      "password": "fdfdff",
+      "id": 1
     }
   ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profiles": {
-    "password": "333",
-    "email": "22"
-  }
+  "profile": {}
 }

@@ -1,4 +1,4 @@
-type AddressType = {
+export type AddressType = {
   'ISO3166-2-lvl4': string;
   city: string;
   country: string;
