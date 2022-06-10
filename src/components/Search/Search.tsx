@@ -6,6 +6,7 @@ import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../utils/useCheckScreenSize";
 import { searchPlaces } from "../../requestApi";
+import { debounce } from "../../utils/debounce";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void
@@ -37,22 +38,20 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
   const screenSize = useCheckScreenSize();
   const isMobile = screenSize < 720;
 
-  const debouncedRequest = useDebouncedCallback(async (value) => {
-    const data: PlaceType[] = await searchPlaces(value);
-
-    if (data) {
-      setListPlace(data);
-      setListVisible(true);
-    }
-  }, 500);
-
-  const handleChange = useCallback((value: string) => {
+  const searchRequest = useCallback(async (value: string) => {
     try {
-      debouncedRequest(value);
+      const data: PlaceType[] = await searchPlaces(value);
+
+      if (data) {
+        setListPlace(data);
+        setListVisible(true);
+      }
     } catch (e) {
       console.log(e);
     }
   }, []);
+
+  const debouncedChange = debounce(searchRequest, 500);
 
   const onClick = useCallback((item: PlaceType) => {
     setListVisible(false);
@@ -65,7 +64,7 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
         variant={isMobile ? "standard" : "outlined"}
         placeholder="Address"
         onChange={(event) => {
-          handleChange(event.target.value);
+          debouncedChange(event.target.value);
         }}
       />
 

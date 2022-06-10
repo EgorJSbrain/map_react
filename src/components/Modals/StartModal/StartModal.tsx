@@ -1,18 +1,12 @@
 import {
   Box,
-  Dialog,
-  DialogTitle,
 } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { useAppDispatch } from "../../../hooks/redux";
-import { authAPI } from "../../../services/AuthService";
-import { userAPI } from "../../../services/UserService";
-import { UserType } from "../../../types";
-import { PlaceType } from "../../../types/place";
+import { fetchAllUsers } from "../../../store/actions/users";
+import { ModalDialog } from "../../ModalDialog";
 import { LogIn } from "./LogIn";
 import { SignUp } from "./SignUp";
 import { ToggleButtons } from "./ToggleButtons";
@@ -43,84 +37,44 @@ const ContentWrapper = styled(Box)`
 
 export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
   const { t } = useTranslation();
-  const navigation = useNavigate();
-  const {
-    control,
-    formState: { isValid },
-    handleSubmit,
-    setValue,
-  } = useForm<UserFormType>({
-    mode: "onChange",
-  });
-
+  const dispatch = useAppDispatch();
   const [contentType, setContentType] = useState<string>(ContentTypes.buttons);
-  const [userAddress, setUserAddress] = useState<PlaceType | null>(null)
-
-  const [logIn, { data }] = authAPI.useFetchLogInMutation()
-  const [signUp, { data: signUpData }] = userAPI.useFetchSignUpMutation()
 
   const isBtns = contentType === ContentTypes.buttons;
   const isSignUp = contentType === ContentTypes.signUp;
   const isLogIn = contentType === ContentTypes.logIn;
 
   useEffect(() => {
-    if (data) navigation('/search');
-    if (signUpData) handleClose();
-  }, [data, signUpData]);
-
-  const onSubmit = useCallback(
-    (data: UserFormType) => {
-      try {
-        if (isLogIn) {
-          logIn({
-            password: data.password,
-            email: data.email,
-          });
-
-        } else {
-          signUp({
-            ...data,
-            address: userAddress,
-          });
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    [logIn, isLogIn, userAddress]
-  );
+    dispatch(fetchAllUsers());
+  }, [dispatch]);
 
   const handleSetType = useCallback((value: string) => {
     setContentType(value);
   }, []);
 
-  const handleSetUserAddress = (address: PlaceType) => {
-    setUserAddress(address);
-    setValue('address', address.display_name);
-  }
-
   return (
-    <Dialog open={isOpen} onClose={handleClose}>
-      <DialogTitle>{t("modals.userModal.title")}</DialogTitle>
+    <ModalDialog
+      title={t("modals.userModal.title")}
+      onClose={handleClose}
+      open={isOpen}
+    >
       <ContentWrapper>
         {isBtns && <ToggleButtons handleSetType={handleSetType} />}
 
         {!isBtns && (
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <>
             {isSignUp && (
               <SignUp
-                control={control}
-                isValid={isValid}
                 translate={t}
-                handleSetUserAddress={handleSetUserAddress}
+                handleClose={handleClose}
+                handleSetType={handleSetType}
               />
             )}
-            {isLogIn && (
-              <LogIn control={control} isValid={isValid} translate={t} />
-            )}
-          </form>
+
+            {isLogIn && <LogIn translate={t} handleSetType={handleSetType} />}
+          </>
         )}
       </ContentWrapper>
-    </Dialog>
+    </ModalDialog>
   );
 };

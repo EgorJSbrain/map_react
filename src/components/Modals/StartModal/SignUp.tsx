@@ -1,72 +1,81 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Box, Button } from "@mui/material";
-import { Control } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { TFunction } from "react-i18next";
 import styled from "styled-components";
-import { UserType } from "../../../types";
 import { UserModalForm } from "./UserModalForm";
-import { UserModalStepper } from "./UserModalStepper";
 import { PlaceType } from "../../../types/place";
-import { UserFormType } from "./StartModal";
-
-const STEPS_AMOUNT = 3;
+import { ContentTypes, UserFormType } from "./StartModal";
+import { addUser } from "../../../store/actions";
+import { useAppDispatch } from "../../../hooks/redux";
 
 const ButtonsBlock = styled(Box)`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 type SignUpProps = {
-  control: Control<UserFormType, any>;
-  isValid: boolean;
   translate: TFunction<"translation", undefined>;
-  handleSetUserAddress: (address: PlaceType) => void;
+  handleClose: () => void;
+  handleSetType: (type: string) => void;
 };
 
 export const SignUp = ({
-  control,
-  isValid,
   translate,
-  handleSetUserAddress,
+  handleClose,
+  handleSetType,
 }: SignUpProps) => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [skipped, setSkipped] = useState(new Set<number>());
+  const dispatch = useAppDispatch();
+  const {
+    control,
+    formState: { isValid },
+    handleSubmit,
+    setValue,
+  } = useForm<UserFormType>({
+    mode: "onChange",
+  });
 
-  const handleNext = () => {
-    let newSkipped = skipped;
+  const [userAddress, setUserAddress] = useState<PlaceType | null>(null);
 
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    setSkipped(newSkipped);
-  };
+  const onSubmit = useCallback(
+    async (data: UserFormType) => {
+      if (userAddress) {
+        const response = await dispatch(
+          addUser({
+            ...data,
+            address: userAddress,
+          })
+        );
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
+        if (response.payload) {
+          handleClose();
+        }
+      }
+    },
+    [userAddress, handleClose, dispatch]
+  );
+
+  const handleSetUserAddress = (address: PlaceType) => {
+    setUserAddress(address);
+    setValue('address', address.display_name);
+  }
 
   return (
-    <>
-      <UserModalStepper activeStep={activeStep} />
+    <form onSubmit={handleSubmit(onSubmit)}>
       <UserModalForm
-        tabIndex={activeStep}
         control={control}
         translate={translate}
         handleSetUserAddress={handleSetUserAddress}
       />
 
       <ButtonsBlock>
-        <Button disabled={activeStep === 0} onClick={handleBack}>
-          {translate("backBtn")}
+        <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.logIn)}>
+          {translate("logIn")}
         </Button>
-        {activeStep !== STEPS_AMOUNT - 1 && (
-          <Button onClick={handleNext}>{translate("nextBtn")}</Button>
-        )}
-
-        {activeStep === STEPS_AMOUNT - 1 && (
-          <Button disabled={!isValid} type="submit">
-            {translate("finishBtn")}
-          </Button>
-        )}
+        <Button disabled={!isValid} type="submit">
+          {translate("finishBtn")}
+        </Button>
       </ButtonsBlock>
-    </>
+    </form>
   );
 };

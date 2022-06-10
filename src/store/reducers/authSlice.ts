@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { authAPI } from "../../services/AuthService";
 import { UserType } from "../../types";
 
-interface UserState {
+interface AuthState {
   user: UserType | null;
 }
 
-const initialState: UserState = {
+const initialState: AuthState = {
   user: null,
 }
 
-export const userSlice = createSlice({
+export const authSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {},
@@ -25,4 +25,4 @@ export const userSlice = createSlice({
   },
 })
 
-export default userSlice.reducer;
+export default authSlice.reducer;
