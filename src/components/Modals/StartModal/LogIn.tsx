@@ -1,8 +1,11 @@
 import { Button, TextField } from "@mui/material";
-import { Control, Controller } from "react-hook-form";
+import { useCallback, useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { TFunction } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { UserType } from "../../../types";
+import { authAPI } from "../../../services/AuthService";
+import { ContentTypes } from "./StartModal";
 
 const TextFieldForm = styled(TextField)`
   width: 100%;
@@ -16,18 +19,49 @@ const TextFieldForm = styled(TextField)`
 const LogInBtnWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
-type LogInProps = {
-  control: Control<any, any>;
-  isValid: boolean;
-  translate: TFunction<"translation", undefined>;
+type UserFormType = {
+  password: string;
+  email: string;
 }
 
-export const LogIn = ({ control, isValid, translate }: LogInProps) => {
+type LogInProps = {
+  translate: TFunction<"translation", undefined>;
+  handleSetType: (type: string) => void;
+};
+
+export const LogIn = ({ translate, handleSetType }: LogInProps) => {
+  const {
+    control,
+    formState: { isValid },
+    handleSubmit,
+  } = useForm<UserFormType>({
+    mode: "onChange",
+  });
+  const navigation = useNavigate();
+  const [logIn, { data }] = authAPI.useFetchLogInMutation();
+
+  useEffect(() => {
+    data && navigation('/search')
+  }, [data, navigation]);
+
+  const onSubmit = useCallback(
+    (data: UserFormType) => {
+      try {
+        logIn({
+          password: data.password,
+          email: data.email,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    [logIn]
+  );
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Controller
         control={control}
         rules={{ required: true }}
@@ -62,8 +96,14 @@ export const LogIn = ({ control, isValid, translate }: LogInProps) => {
         )}
       />
       <LogInBtnWrapper>
-        <Button disabled={!isValid} type="submit">LogIn</Button>
+        <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.signUp)}>
+          {translate("signUp")}
+        </Button>
+
+        <Button disabled={!isValid} type="submit">
+          {translate("logIn")}
+        </Button>
       </LogInBtnWrapper>
-    </>
+    </form>
   );
 };

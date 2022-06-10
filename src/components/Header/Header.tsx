@@ -5,8 +5,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 // import LoginIcon from '@mui/icons-material/Login';
 import { LangSwither } from "./LangSwither";
 import { useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { userAPI } from "../../services/UserService";
+import { useAppSelector } from "../../hooks/redux";
+import { authAPI } from "../../services/AuthService";
 
 const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
@@ -61,22 +61,20 @@ const LogOut = styled(LogoutIcon)`
 export const Header = () => {
   const { t, i18n } = useTranslation();
   const location = useLocation();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { user } = useAppSelector(state => state.userReducer)
-  const [ logOut ] = userAPI.useFetchLogOutMutation();
+  const { user } = useAppSelector(state => state.auth)
+  const [ logOut ] = authAPI.useFetchLogOutMutation();
 
   const isApp = location.pathname.includes("app");
 
   const hnadleChangeLanguage = useCallback((checked: boolean) => {
     i18n.changeLanguage(checked ? "en" : "ru");
-  }, []);
+  }, [i18n]);
 
   const handleLogOut = useCallback(() => {
-    // dispatch(userLogOut);
     logOut({});
     navigate("/app");
-  }, []);
+  }, [navigate, logOut]);
 
   return (
     <HeaderWrapper isApp={isApp}>

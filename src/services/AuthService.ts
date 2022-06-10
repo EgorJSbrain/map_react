@@ -19,7 +19,7 @@ export const authAPI = createApi({
     }),
     fetchLogOut: build.mutation({
       query: (data: {}) => ({
-        url: "/profiles",
+        url: "/profile",
         method: "POST",
         body: data,
       }),

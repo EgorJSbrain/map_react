@@ -14,13 +14,25 @@ const HomePageWrapper = styled.div`
   overflow: hidden;
 `;
 
+const Cursor = styled.img`
+  position: absolute;
+  transform: rotate(-25deg);
+  right: -52px;
+  top: 112px;
+  width: 90px;
+  height: 90px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`
+
 const HomeTitleWrapper = styled.div`
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10%;
+  justify-content: center;
   background-color: #5a5f1a14;
 `;
 
@@ -29,6 +41,7 @@ const HomeTitle = styled.div`
   font-weight: 600;
   color: #fff;
   height: 130px;
+  position: relative;
 `;
 
 const StartButton = styled.div`
@@ -72,8 +85,10 @@ export const HomePage = () => {
   return (
     <HomePageWrapper>
       <HomeTitleWrapper>
-        <HomeTitle>Touch</HomeTitle>
-        <HomeTitle>The World</HomeTitle>
+        <HomeTitle>
+          Touch
+        <Cursor src="./cursor.svg"/>
+        </HomeTitle>
         <StartButton tabIndex={4} onClick={handleModalVisible}>
           {t("startBtn")}
         </StartButton>

@@ -1,1 +1,2 @@
-export { searchPlaces, getPlaceAdress } from './map';
+export { searchPlaces, getPlaceAdress } from './places';
+export { userAddRequest, usersAllRequest } from './users';
