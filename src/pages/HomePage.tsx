@@ -24,6 +24,19 @@ const Cursor = styled.img`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: 2;
+`
+
+const Sircle = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(187 187 185) 56%, rgba(103,34,48,0.16712622549019607) 94%);
+  position: absolute;
+  z-index: 1;
+  opacity: .4;
+  right: -16px;
+  top: 98px;
 `
 
 const HomeTitleWrapper = styled.div`
@@ -32,7 +45,7 @@ const HomeTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding-top: 200px;
   background-color: #5a5f1a14;
 `;
 
@@ -46,7 +59,7 @@ const HomeTitle = styled.div`
 
 const StartButton = styled.div`
   width: 240px;
-  height: 64px;
+  height: 80px;
   border-radius: 38px;
   text-align: center;
   background-color: #ffe108;
@@ -54,8 +67,8 @@ const StartButton = styled.div`
   font-size: 36px;
   letter-spacing: 2px;
   user-select: none;
-  padding-top: 6px;
-  margin-top: 58px;
+  padding-top: 12px;
+  margin-top: 78px;
 
   :hover {
     cursor: pointer;
@@ -87,7 +100,8 @@ export const HomePage = () => {
       <HomeTitleWrapper>
         <HomeTitle>
           Touch
-        <Cursor src="./cursor.svg"/>
+          <Cursor src="./cursor.svg" />
+          <Sircle />
         </HomeTitle>
         <StartButton tabIndex={4} onClick={handleModalVisible}>
           {t("startBtn")}

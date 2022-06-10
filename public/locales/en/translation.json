@@ -6,6 +6,8 @@
   "navHome": "HOME",
   "navMap": "MAP",
   "navCards": "CARDS",
+  "signUpBtn": "Signup",
+  "logInBtn": "Login",
   "modals": {
     "userModal": {
       "title": "Hello!",

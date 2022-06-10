@@ -1,10 +1,9 @@
 import { useCallback, useState } from "react";
 import { TextField } from "@mui/material";
-import { useDebouncedCallback } from 'use-debounce';
 import styled from "styled-components";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
-import { useCheckScreenSize } from "../../utils/useCheckScreenSize";
+import { useCheckScreenSize } from "../../hooks/useCheckScreenSize";
 import { searchPlaces } from "../../requestApi";
 import { debounce } from "../../utils/debounce";
 

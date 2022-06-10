@@ -9,7 +9,7 @@ export const fetchAllUsers = createAsyncThunk(
     try {
       const response = await usersAllRequest();
 
-      if (!response.ok) {
+      if (!response) {
         throw new Error('Server error')
       }
 
