@@ -1,11 +1,11 @@
 import { useCallback, useState } from "react";
 import { Box, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
-import { TFunction } from "react-i18next";
+import { useForm, useFormState, useWatch } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import { UserModalForm } from "./UserModalForm";
 import { PlaceType } from "../../../types/place";
-import { ContentTypes, UserFormType } from "./StartModal";
+import { ContentTypes } from "./StartModal";
 import { addUser } from "../../../store/actions";
 import { useAppDispatch } from "../../../hooks/redux";
 
@@ -14,18 +14,25 @@ const ButtonsBlock = styled(Box)`
   justify-content: center;
 `;
 
+export type UserFormType = {
+  firstName: string;
+  secondName: string;
+  address: string;
+  email: string;
+  password: string;
+}
+
 type SignUpProps = {
-  translate: TFunction<"translation", undefined>;
   handleClose: () => void;
   handleSetType: (type: string) => void;
 };
 
 export const SignUp = ({
-  translate,
   handleClose,
   handleSetType,
 }: SignUpProps) => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const {
     control,
     formState: { isValid },
@@ -34,6 +41,7 @@ export const SignUp = ({
   } = useForm<UserFormType>({
     mode: "onChange",
   });
+  const { dirtyFields } = useFormState({control});
 
   const [userAddress, setUserAddress] = useState<PlaceType | null>(null);
 
@@ -55,25 +63,31 @@ export const SignUp = ({
     [userAddress, handleClose, dispatch]
   );
 
-  const handleSetUserAddress = (address: PlaceType) => {
-    setUserAddress(address);
-    setValue('address', address.display_name);
+  const handleSetUserAddress = (address: PlaceType | null) => {
+    if (address) {
+      setUserAddress(address);
+      setValue('address', address.display_name);
+    } else {
+      setUserAddress(null);
+      setValue('address', '', {shouldDirty: true});
+    }
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <UserModalForm
         control={control}
-        translate={translate}
+        translate={t}
         handleSetUserAddress={handleSetUserAddress}
+        dirtyFields={dirtyFields}
       />
 
       <ButtonsBlock>
         <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.logIn)}>
-          {translate("logIn")}
+          {t("logInBtn")}
         </Button>
         <Button disabled={!isValid} type="submit">
-          {translate("finishBtn")}
+          {t("finishBtn")}
         </Button>
       </ButtonsBlock>
     </form>

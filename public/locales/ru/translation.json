@@ -6,6 +6,8 @@
   "navHome": "СТАРТ",
   "navMap": "КАРТА",
   "navCards": "КАРТОЧКИ",
+  "signUpBtn": "Создать",
+  "logInBtn": "Войти",
   "modals": {
     "userModal": {
       "title": "Привет!",

@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import { useCallback, useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { TFunction } from "react-i18next";
+import { Controller, useForm, useFormState } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { authAPI } from "../../../services/AuthService";
@@ -27,11 +27,10 @@ type UserFormType = {
 }
 
 type LogInProps = {
-  translate: TFunction<"translation", undefined>;
   handleSetType: (type: string) => void;
 };
 
-export const LogIn = ({ translate, handleSetType }: LogInProps) => {
+export const LogIn = ({ handleSetType }: LogInProps) => {
   const {
     control,
     formState: { isValid },
@@ -40,6 +39,8 @@ export const LogIn = ({ translate, handleSetType }: LogInProps) => {
     mode: "onChange",
   });
   const navigation = useNavigate();
+  const { t } = useTranslation();
+  const { dirtyFields } = useFormState({control});
   const [logIn, { data }] = authAPI.useFetchLogInMutation();
 
   useEffect(() => {
@@ -69,10 +70,10 @@ export const LogIn = ({ translate, handleSetType }: LogInProps) => {
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.email")}
+            label={t("modals.userModal.email")}
             variant="standard"
             required
-            error={!field.value?.length}
+            error={!!dirtyFields.email && !field.value?.length}
             value={field.value}
             onChange={field.onChange}
           />
@@ -86,10 +87,10 @@ export const LogIn = ({ translate, handleSetType }: LogInProps) => {
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.password")}
+            label={t("modals.userModal.password")}
             variant="standard"
             required
-            error={!field.value?.length}
+            error={!!dirtyFields.password && !field.value?.length}
             value={field.value}
             onChange={field.onChange}
           />
@@ -97,11 +98,11 @@ export const LogIn = ({ translate, handleSetType }: LogInProps) => {
       />
       <LogInBtnWrapper>
         <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.signUp)}>
-          {translate("signUp")}
+          {t("signUpBtn")}
         </Button>
 
         <Button disabled={!isValid} type="submit">
-          {translate("logIn")}
+          {t("finishBtn")}
         </Button>
       </LogInBtnWrapper>
     </form>

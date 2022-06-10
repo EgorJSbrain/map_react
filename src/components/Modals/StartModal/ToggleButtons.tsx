@@ -1,4 +1,5 @@
 import { Box, Button } from "@mui/material"
+import { useTranslation } from "react-i18next"
 import styled from "styled-components"
 import { ContentTypes } from "./StartModal"
 
@@ -10,7 +11,7 @@ const ButtonsWrapper = styled(Box)`
 `
 
 const ToggleButton = styled(Button)`
-  width: 164px !important;
+  width: 182px !important;
   padding: 36px !important;
   font-size: 20px !important;
   border-radius: 44px !important;
@@ -19,11 +20,17 @@ type ToggleButtons = {
   handleSetType: (value: string) => void;
 }
 
-export const ToggleButtons = ({handleSetType}: ToggleButtons) => {
+export const ToggleButtons = ({ handleSetType }: ToggleButtons) => {
+  const { t } = useTranslation();
+
   return (
     <ButtonsWrapper>
-      <ToggleButton onClick={() => handleSetType(ContentTypes.signUp)}>Sign up</ToggleButton>
-      <ToggleButton onClick={() => handleSetType(ContentTypes.logIn)}>Log in</ToggleButton>
+      <ToggleButton onClick={() => handleSetType(ContentTypes.signUp)}>
+        {t("signUpBtn")}
+      </ToggleButton>
+      <ToggleButton onClick={() => handleSetType(ContentTypes.logIn)}>
+        {t("logInBtn")}
+      </ToggleButton>
     </ButtonsWrapper>
   );
 }

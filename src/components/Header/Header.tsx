@@ -12,7 +12,7 @@ const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.isApp ? `transparent` : `#59ddff`)};
+  background-color: ${(props) => (props.isApp ? `transparent` : `#0b1352`)};
   padding: 24px;
   position: absolute;
   top: 0;
@@ -29,7 +29,7 @@ const Links = styled.div`
 
 const Link = styled(NavLink)`
   text-decoration: inherit;
-  color: "#395964";
+  color: #ffffff6e;
 
   :hover {
     color: white;
@@ -45,8 +45,8 @@ const LangBlock = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  top: 12px;
   right: 16px;
-  top: 16px;
 `;
 
 const LogOut = styled(LogoutIcon)`

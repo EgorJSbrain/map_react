@@ -22,22 +22,14 @@ type UserModalProps = {
   handleClose: () => void;
 };
 
-export type UserFormType = {
-  firstName: string;
-  secondName: string;
-  address: string;
-  email: string;
-  password: string;
-}
-
 const ContentWrapper = styled(Box)`
   width: 480px;
   padding: 0 24px 24px 24px;
 `;
 
 export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
   const [contentType, setContentType] = useState<string>(ContentTypes.buttons);
 
   const isBtns = contentType === ContentTypes.buttons;
@@ -65,13 +57,12 @@ export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
           <>
             {isSignUp && (
               <SignUp
-                translate={t}
                 handleClose={handleClose}
                 handleSetType={handleSetType}
               />
             )}
 
-            {isLogIn && <LogIn translate={t} handleSetType={handleSetType} />}
+            {isLogIn && <LogIn handleSetType={handleSetType} />}
           </>
         )}
       </ContentWrapper>
