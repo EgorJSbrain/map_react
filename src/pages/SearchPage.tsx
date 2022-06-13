@@ -34,7 +34,7 @@ export const SearchPage = () => {
     setSelectPosition(position);
   };
   return (
-    <AppWrapper>
+    <AppWrapper data-testid={'search-page'}>
       <Search handleSetPosition={handleSetPosition} />
 
       {selectPosition && (

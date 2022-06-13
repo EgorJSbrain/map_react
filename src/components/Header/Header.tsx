@@ -7,6 +7,7 @@ import { LangSwither } from "./LangSwither";
 import { useCallback } from "react";
 import { useAppSelector } from "../../hooks/redux";
 import { authAPI } from "../../services/AuthService";
+import { Navbar } from "./Navbar";
 
 const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
@@ -20,25 +21,7 @@ const HeaderWrapper = styled.header<{ isApp: boolean }>`
   right: 0;
 `;
 
-const Links = styled.div`
-  width: 232px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
-const Link = styled(NavLink)`
-  text-decoration: inherit;
-  color: #ffffff6e;
-
-  :hover {
-    color: white;
-  }
-
-  &.active {
-    color: white;
-  }
-`;
 
 const LangBlock = styled.div`
   display: flex;
@@ -59,7 +42,7 @@ const LogOut = styled(LogoutIcon)`
 `;
 
 export const Header = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAppSelector(state => state.auth)
@@ -78,13 +61,7 @@ export const Header = () => {
 
   return (
     <HeaderWrapper isApp={isApp}>
-      {!isApp && (
-        <Links>
-          <Link to="/app">{t("navHome")}</Link>
-          <Link to="/search">{t("navMap")}</Link>
-          <Link to="/dashboard">{t("navCards")}</Link>
-        </Links>
-      )}
+      {!isApp && <Navbar />}
       <LangBlock onClick={handleLogOut}>
         {user && <LogOut />}
         <LangSwither changeLanguage={hnadleChangeLanguage} />
