@@ -96,7 +96,7 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <HomePageWrapper>
+    <HomePageWrapper data-testid={'home-page'}>
       <HomeTitleWrapper>
         <HomeTitle>
           Touch
