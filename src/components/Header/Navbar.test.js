@@ -12,7 +12,6 @@ const routerRender = () => {
     <MemoryRouter>
       <Provider store={store}>
         <App />
-        <Navbar />
       </Provider>
     </MemoryRouter>
   );
@@ -55,16 +54,16 @@ describe("HEADER TEST", () => {
   test('test home link', () => {
     routerRender();
 
-    const homeLink = screen.getAllByTestId('home-link')
-    userEvent.click(homeLink[0]);
+    const homeLink = screen.getByTestId('home-link')
+    userEvent.click(homeLink);
     expect(screen.getByTestId('home-page')).toBeInTheDocument;
   })
 
   test('test search link', () => {
     routerRender();
 
-    const homeLink = screen.getAllByTestId('search-link')
-    userEvent.click(homeLink[0]);
+    const homeLink = screen.getByTestId('search-link')
+    userEvent.click(homeLink);
     expect(screen.getByTestId('search-page')).toBeInTheDocument;
   })
 });
