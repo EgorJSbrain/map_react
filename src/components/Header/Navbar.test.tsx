@@ -1,6 +1,6 @@
-import { render, screen } from "@testing-library/react"
-import { Navbar } from "./Navbar"
-import { MemoryRouter } from 'react-router-dom'
+import { render, screen } from "@testing-library/react";
+import { Navbar } from "./Navbar";
+import { MemoryRouter } from 'react-router-dom';
 import userEvent from "@testing-library/user-event";
 import { App } from '../../App'
 import { Provider } from 'react-redux';
@@ -20,7 +20,7 @@ const routerRender = () => {
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
     return {
-      t: (str) => str,
+      t: (str: string) => str,
     };
   },
 }));
@@ -30,9 +30,9 @@ jest.mock('react-redux', () => {
   return {
       ...ActualReactRedux,
       useSelector: jest.fn().mockImplementation(() => {
-          return mockState;
+          return {};
       }),
-  };
+  }
 });
 
 describe("HEADER TEST", () => {
@@ -62,8 +62,8 @@ describe("HEADER TEST", () => {
   test('test search link', () => {
     routerRender();
 
-    const homeLink = screen.getByTestId('search-link')
-    userEvent.click(homeLink);
+    const searchLink = screen.getByTestId('search-link')
+    userEvent.click(searchLink);
     expect(screen.getByTestId('search-page')).toBeInTheDocument;
   })
 });

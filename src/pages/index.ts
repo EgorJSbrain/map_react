@@ -1,3 +1,3 @@
-export { HomePage } from './HomePage';
 export { Layout } from './Layout';
-export { SearchPage }  from './SearchPage';
+export { HomePage } from './Home/HomePage';
+export { SearchPage }  from './Search/SearchPage';
