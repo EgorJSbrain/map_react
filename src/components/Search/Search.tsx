@@ -1,35 +1,14 @@
 import { useCallback, useState } from "react";
-import { TextField } from "@mui/material";
-import styled from "styled-components";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
-import { useCheckScreenSize } from "../../hooks/useCheckScreenSize";
+import { useCheckScreenSize } from "../../hooks";
 import { searchPlaces } from "../../requestApi";
-import { debounce } from "../../utils/debounce";
+import { debounce } from "../../utils";
+import { Input, SearchWrapper } from "./styled";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void
 }
-
-const Input = styled(TextField)`
-  width: 100%;
-
-  @media (max-width: 720px) {
-    .MuiInput-input {
-      padding: 4px 12px 5px;
-    }
-  }
-`
-
-const SearchWrapper = styled.div`
-  position: relative;
-  margin: 40px auto;
-  max-width: 1000px;
-
-  @media (min-width: 720px) {
-    padding: 0 24px;
-  }
-`;
 
 export const Search = ({ handleSetPosition }: SearchProps) => {
   const [listPlace, setListPlace] = useState<PlaceType[]>([]);

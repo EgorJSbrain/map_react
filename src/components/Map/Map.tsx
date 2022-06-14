@@ -12,7 +12,7 @@ import { MapLayer } from "../MapLayer";
 import { POSITION_CENTER } from "../../constants";
 import { getPlaceAdress } from "../../requestApi";
 import "leaflet/dist/leaflet.css";
-import './map.css'
+import '../../index.css';
 
 const icon = L.icon({
   iconUrl: "./placeholder.png",

@@ -1,16 +1,6 @@
 import { ReactNode } from "react";
-import { Dialog, DialogTitle, styled } from "@mui/material";
-import CloseIcon from '@mui/icons-material/Close';
-
-const Close = styled(CloseIcon)`
-  position: absolute;
-  top: 24px;
-  right: 24px;
-
-  :hover {
-    cursor: pointer;
-  }
-`
+import { Dialog, DialogTitle } from "@mui/material";
+import { Close } from "./ModalDialog.styled";
 
 type ModalDialogProps = {
   children: ReactNode;

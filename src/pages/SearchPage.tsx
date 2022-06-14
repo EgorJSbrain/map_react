@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Map, Search } from "../components";
 import { position } from "../constants";
 import { getPlaceAdress } from "../requestApi";
 import { PlaceType } from "../types/place";
-
-const AppWrapper = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  margin-top: 66px;
-`;
+import { AppWrapper } from "./SearchPage.styled";
 
 export const SearchPage = () => {
   const [selectPosition, setSelectPosition] = useState<PlaceType>();

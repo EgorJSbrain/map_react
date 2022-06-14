@@ -1,25 +1,11 @@
-import { Button, TextField } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { Controller, useForm, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { authAPI } from "../../../services/AuthService";
 import { ContentTypes } from "./StartModal";
-
-const TextFieldForm = styled(TextField)`
-  width: 100%;
-  margin-bottom: 24px !important;
-
-  .MuiFormLabel-asterisk {
-    color: #d32f2f;
-  }
-`;
-
-const LogInBtnWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from "./styled";
 
 type UserFormType = {
   password: string;
@@ -96,15 +82,16 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
           />
         )}
       />
-      <LogInBtnWrapper>
-        <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.signUp)}>
-          {t("signUpBtn")}
+      <CentredWrapper>
+        <Button sx={{mb: 2}} disabled={!isValid} type="submit">
+          {t("logInBtn")}
         </Button>
+      </CentredWrapper>
 
-        <Button disabled={!isValid} type="submit">
-          {t("finishBtn")}
-        </Button>
-      </LogInBtnWrapper>
+      <CentredWrapper>
+        <LinkBoxInfo>{t("notExistedAccaunt")}</LinkBoxInfo>
+        <LinkBox onClick={() => handleSetType(ContentTypes.signUp)}>{t("signUpBtn")}</LinkBox>
+      </CentredWrapper>
     </form>
   );
 };
