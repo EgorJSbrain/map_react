@@ -44,7 +44,7 @@ const theme = createTheme({
           letterSpacing: '1.2px',
           backgroundColor: '#ffe108',
           color: '#1d1a39',
-          width: '90px',
+          padding: '0px 24px',
           height: '40px',
           borderRadius: '20px',
           fontWeight: 700,

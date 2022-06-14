@@ -78,7 +78,7 @@ export const SignUp = ({
       />
       <CentredWrapper>
         <Button sx={{mb: 2}} disabled={!isValid} type="submit">
-          {t("logInBtn")}
+          {t("signUpBtn")}
         </Button>
       </CentredWrapper>
 

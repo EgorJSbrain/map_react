@@ -39,7 +39,7 @@ export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
       onClose={handleClose}
       open={isOpen}
     >
-      <ContentWrapper>
+      <ContentWrapper data-testid={"home-modal"}>
         {isSignUp && (
           <SignUp handleClose={handleClose} handleSetType={handleSetType} />
         )}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Map, Search } from "../components";
-import { position } from "../constants";
-import { getPlaceAdress } from "../requestApi";
-import { PlaceType } from "../types/place";
+import { Map, Search } from "../../components";
+import { position } from "../../constants";
+import { getPlaceAdress } from "../../requestApi";
+import { PlaceType } from "../../types/place";
 import { AppWrapper } from "./SearchPage.styled";
 
 export const SearchPage = () => {
@@ -26,6 +26,7 @@ export const SearchPage = () => {
   const handleSetPosition = (position: PlaceType) => {
     setSelectPosition(position);
   };
+
   return (
     <AppWrapper data-testid={'search-page'}>
       <Search handleSetPosition={handleSetPosition} />
