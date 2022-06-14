@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { useForm, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ import { CentredWrapper, LinkBox, LinkBoxInfo } from "./styled";
 export type UserFormType = {
   firstName: string;
   secondName: string;
-  address: string;
+  address: PlaceType;
   email: string;
   password: string;
 }
@@ -38,43 +38,24 @@ export const SignUp = ({
   });
   const { dirtyFields } = useFormState({control});
 
-  const [userAddress, setUserAddress] = useState<PlaceType | null>(null);
-
   const onSubmit = useCallback(
     async (data: UserFormType) => {
-      if (userAddress) {
-        const response = await dispatch(
-          addUser({
-            ...data,
-            address: userAddress,
-          })
-        );
+        const response = await dispatch(addUser(data));
 
         if (response.payload) {
           handleClose();
         }
-      }
     },
-    [userAddress, handleClose, dispatch]
+    [handleClose, dispatch]
   );
-
-  const handleSetUserAddress = (address: PlaceType | null) => {
-    if (address) {
-      setUserAddress(address);
-      setValue('address', address.display_name);
-    } else {
-      setUserAddress(null);
-      setValue('address', '', {shouldDirty: true});
-    }
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <UserModalForm
         control={control}
-        translate={t}
-        handleSetUserAddress={handleSetUserAddress}
+        // @ts-ignore
         dirtyFields={dirtyFields}
+        setValue={setValue}
       />
       <CentredWrapper>
         <Button sx={{mb: 2}} disabled={!isValid} type="submit">
