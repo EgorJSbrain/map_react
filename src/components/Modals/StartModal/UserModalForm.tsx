@@ -8,11 +8,11 @@ import {
 import { useCallback, useState } from "react";
 import { Control, Controller } from "react-hook-form";
 import { TFunction } from "react-i18next";
-import styled from "styled-components";
 import { searchPlaces } from "../../../requestApi";
 import { PlaceType } from "../../../types/place";
-import { debounce } from "../../../utils/debounce";
+import { debounce } from "../../../utils";
 import { UserFormType } from "./SignUp";
+import { FormWrapper, ListWrapper, TextFieldForm } from "./styled";
 
 type DirtyFieldsType = {
   firstName?: boolean;
@@ -21,34 +21,6 @@ type DirtyFieldsType = {
   email?: boolean;
   password?: boolean;
 }
-
-const ListWrapper = styled.div`
-  position: absolute;
-  background-color: white;
-  max-height: 132px;
-  width: 408px;
-  overflow-y: auto;
-  z-index: 1001;
-  border-radius: 4px;
-
-  &.MuiList-root {
-    padding: 0px !important
-  }
-`;
-
-const FormWrapper = styled.div`
-  padding: 24px 12px 32px 12px;
-  position: relative;
-`;
-
-const TextFieldForm = styled(TextField)`
-  width: 100%;
-  margin-bottom: 24px !important;
-
-  .MuiFormLabel-asterisk {
-    color: #d32f2f;
-  }
-`;
 
 type UserModalFormProps = {
   control: Control<UserFormType, any>;

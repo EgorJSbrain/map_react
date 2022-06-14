@@ -6,8 +6,10 @@
   "navHome": "HOME",
   "navMap": "MAP",
   "navCards": "CARDS",
-  "signUpBtn": "Signup",
+  "signUpBtn": "Register",
   "logInBtn": "Login",
+  "notExistedAccaunt": "If you don't have accaunt",
+  "existedAccaunt": "If you have accaunt",
   "modals": {
     "userModal": {
       "title": "Hello!",

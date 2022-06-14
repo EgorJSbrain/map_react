@@ -350,8 +350,5 @@
       "id": 10
     }
   ],
-  "profile": {
-    "password": "dfdfdff",
-    "email": "dsdf"
-  }
+  "profile": {}
 }

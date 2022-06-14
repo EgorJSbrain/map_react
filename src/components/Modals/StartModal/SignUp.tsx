@@ -1,18 +1,13 @@
 import { useCallback, useState } from "react";
-import { Box, Button } from "@mui/material";
-import { useForm, useFormState, useWatch } from "react-hook-form";
+import { Button } from "@mui/material";
+import { useForm, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
 import { UserModalForm } from "./UserModalForm";
 import { PlaceType } from "../../../types/place";
 import { ContentTypes } from "./StartModal";
 import { addUser } from "../../../store/actions";
-import { useAppDispatch } from "../../../hooks/redux";
-
-const ButtonsBlock = styled(Box)`
-  display: flex;
-  justify-content: center;
-`;
+import { useAppDispatch } from "../../../hooks";
+import { CentredWrapper, LinkBox, LinkBoxInfo } from "./styled";
 
 export type UserFormType = {
   firstName: string;
@@ -81,15 +76,16 @@ export const SignUp = ({
         handleSetUserAddress={handleSetUserAddress}
         dirtyFields={dirtyFields}
       />
-
-      <ButtonsBlock>
-        <Button sx={{ mr: 4 }} onClick={() => handleSetType(ContentTypes.logIn)}>
+      <CentredWrapper>
+        <Button sx={{mb: 2}} disabled={!isValid} type="submit">
           {t("logInBtn")}
         </Button>
-        <Button disabled={!isValid} type="submit">
-          {t("finishBtn")}
-        </Button>
-      </ButtonsBlock>
+      </CentredWrapper>
+
+      <CentredWrapper>
+        <LinkBoxInfo>{t("existedAccaunt")}</LinkBoxInfo>
+        <LinkBox onClick={() => handleSetType(ContentTypes.logIn)}>{t("logInBtn")}</LinkBox>
+      </CentredWrapper>
     </form>
   );
 };
