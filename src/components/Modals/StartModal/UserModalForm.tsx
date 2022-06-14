@@ -1,13 +1,14 @@
 import {
+  Autocomplete,
   Divider,
   List,
   ListItem,
   ListItemText,
   TextField,
 } from "@mui/material";
-import { useCallback, useState } from "react";
-import { Control, Controller } from "react-hook-form";
-import { TFunction } from "react-i18next";
+import { SyntheticEvent, useCallback, useState } from "react";
+import { Control, Controller, UseFormSetValue } from "react-hook-form";
+import { TFunction, useTranslation } from "react-i18next";
 import { searchPlaces } from "../../../requestApi";
 import { PlaceType } from "../../../types/place";
 import { debounce } from "../../../utils";
@@ -25,31 +26,24 @@ type DirtyFieldsType = {
 type UserModalFormProps = {
   control: Control<UserFormType, any>;
   dirtyFields: DirtyFieldsType;
-  translate: TFunction<"translation", undefined>;
-  handleSetUserAddress: (address: PlaceType | null) => void;
+  setValue: UseFormSetValue<UserFormType>
 };
 
 export const UserModalForm = ({
   control,
   dirtyFields,
-  translate,
-  handleSetUserAddress,
+  setValue,
 }: UserModalFormProps) => {
+  const { t } = useTranslation();
   const [listPlace, setListPlace] = useState<PlaceType[]>([]);
-  const [isListVisible, setListVisible] = useState(false);
 
   const searchRequest = useCallback(
     async (value: string) => {
       try {
-        if (!value.length) {
-          handleSetUserAddress(null);
-          return;
-        }
         const data: PlaceType[] = await searchPlaces(value);
 
         if (data) {
           setListPlace(data);
-          setListVisible(true);
         }
       } catch (e) {
         console.log(e);
@@ -60,10 +54,10 @@ export const UserModalForm = ({
 
   const debouncedChange = debounce(searchRequest, 500);
 
-  const onClick = useCallback((item: PlaceType) => {
-    setListVisible(false);
-    handleSetUserAddress(item);
-  }, [handleSetUserAddress, setListVisible]);
+  const handleChange = (newValue: PlaceType | null) => {
+    // @ts-ignore
+    setValue("address", newValue, { shouldDirty: true });
+  };
 
   return (
     <FormWrapper>
@@ -74,7 +68,7 @@ export const UserModalForm = ({
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.firstName")}
+            label={t("modals.userModal.firstName")}
             variant="standard"
             required
             error={!!dirtyFields.firstName && !field.value?.length}
@@ -91,7 +85,7 @@ export const UserModalForm = ({
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.secondName")}
+            label={t("modals.userModal.secondName")}
             variant="standard"
             required
             error={!!dirtyFields.secondName && !field.value?.length}
@@ -107,35 +101,32 @@ export const UserModalForm = ({
         name="address"
         render={({ field }) => (
           <>
-            <TextFieldForm
-              autoComplete="off"
-              label={translate("modals.userModal.country")}
-              variant="standard"
-              required
-              error={!!dirtyFields.address && !field.value}
-              value={field.value}
-              onChange={(e) => {
+            <Autocomplete
+              options={listPlace}
+              isOptionEqualToValue={(option, value) => option !== value}
+              getOptionLabel={(option) => option.display_name || ""}
+              value={field.value || ""}
+              onChange={(
+                event: SyntheticEvent<Element, Event>,
+                value: PlaceType | null
+              ) => {
                 field.onChange();
-                debouncedChange(e.target.value);
+                handleChange(value);
               }}
+              renderInput={(params) => (
+                <TextFieldForm
+                  {...params}
+                  autoComplete="off"
+                  label={t("modals.userModal.country")}
+                  variant="standard"
+                  required
+                  error={!!dirtyFields.address && !field.value}
+                  onChange={(e) => {
+                    debouncedChange(e.target.value);
+                  }}
+                />
+              )}
             />
-            {isListVisible && !!listPlace.length && (
-              <ListWrapper>
-                <List>
-                  {listPlace.map((item, index) => (
-                    <div key={index}>
-                      <ListItem
-                        button
-                        onClick={() => onClick(item)}
-                      >
-                        <ListItemText primary={item?.display_name} />
-                      </ListItem>
-                      <Divider />
-                    </div>
-                  ))}
-                </List>
-              </ListWrapper>
-            )}
           </>
         )}
       />
@@ -147,7 +138,7 @@ export const UserModalForm = ({
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.email")}
+            label={t("modals.userModal.email")}
             variant="standard"
             required
             error={!!dirtyFields.email && !field.value?.length}
@@ -164,7 +155,7 @@ export const UserModalForm = ({
         defaultValue={""}
         render={({ field }) => (
           <TextFieldForm
-            label={translate("modals.userModal.password")}
+            label={t("modals.userModal.password")}
             variant="standard"
             required
             error={!!dirtyFields.password && !field.value?.length}
