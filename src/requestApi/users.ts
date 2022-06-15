@@ -9,7 +9,7 @@ export const usersAllRequest = async () => {
 
 export const userAddRequest = async (userData: UserType) => {
   const { data } = await instanceApi.post("users", {
-    data: userData
+    ...userData
   });
 
   return data;

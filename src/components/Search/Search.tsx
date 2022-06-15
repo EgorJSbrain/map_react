@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../hooks";
