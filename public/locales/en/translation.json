@@ -10,6 +10,7 @@
   "logInBtn": "Login",
   "notExistedAccaunt": "If you don't have accaunt",
   "existedAccaunt": "If you have accaunt",
+  "validationEmailMessage": "Use correct format for email",
   "modals": {
     "userModal": {
       "title": "Hello!",

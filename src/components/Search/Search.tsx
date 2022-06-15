@@ -4,7 +4,7 @@ import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../hooks";
 import { searchPlaces } from "../../requestApi";
 import { debounce } from "../../utils";
-import { Input, SearchWrapper } from "./styled";
+import { Input, SearchWrapper } from "./Search.styled";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void

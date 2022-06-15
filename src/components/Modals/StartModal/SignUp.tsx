@@ -7,7 +7,7 @@ import { PlaceType } from "../../../types/place";
 import { ContentTypes } from "./StartModal";
 import { addUser } from "../../../store/actions";
 import { useAppDispatch } from "../../../hooks";
-import { CentredWrapper, LinkBox, LinkBoxInfo } from "./styled";
+import { CentredWrapper, LinkBox, LinkBoxInfo } from "./StartModal.styled";
 
 export type UserFormType = {
   firstName: string;
@@ -36,7 +36,6 @@ export const SignUp = ({
   } = useForm<UserFormType>({
     mode: "onChange",
   });
-  const { dirtyFields } = useFormState({control});
 
   const onSubmit = useCallback(
     async (data: UserFormType) => {
@@ -53,8 +52,6 @@ export const SignUp = ({
     <form onSubmit={handleSubmit(onSubmit)}>
       <UserModalForm
         control={control}
-        // @ts-ignore
-        dirtyFields={dirtyFields}
         setValue={setValue}
       />
       <CentredWrapper>

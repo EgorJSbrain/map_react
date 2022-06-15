@@ -33,6 +33,13 @@ export const ListWrapper = styled.div`
 export const FormWrapper = styled.div`
   padding: 24px 12px 0px 12px;
   position: relative;
+
+  p {
+    &.Mui-error {
+      position: absolute;
+      top: 44px;
+    }
+  }
 `;
 
 export const TextFieldForm = styled(TextField)`

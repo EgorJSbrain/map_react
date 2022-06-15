@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { authAPI } from "../../../services/AuthService";
 import { ContentTypes } from "./StartModal";
-import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from "./styled";
+import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from "./StartModal.styled";
 
 type UserFormType = {
   password: string;

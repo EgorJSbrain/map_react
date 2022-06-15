@@ -1,41 +1,28 @@
 import {
   Autocomplete,
-  Divider,
-  List,
-  ListItem,
-  ListItemText,
-  TextField,
 } from "@mui/material";
-import { SyntheticEvent, useCallback, useState } from "react";
-import { Control, Controller, UseFormSetValue } from "react-hook-form";
-import { TFunction, useTranslation } from "react-i18next";
+import { useCallback, useState } from "react";
+import { Control, Controller, UseFormRegister, UseFormSetValue, useFormState } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { searchPlaces } from "../../../requestApi";
 import { PlaceType } from "../../../types/place";
 import { debounce } from "../../../utils";
 import { UserFormType } from "./SignUp";
-import { FormWrapper, ListWrapper, TextFieldForm } from "./styled";
+import { FormWrapper, TextFieldForm } from "./StartModal.styled";
 
-type DirtyFieldsType = {
-  firstName?: boolean;
-  secondName?: boolean;
-  address?: boolean;
-  email?: boolean;
-  password?: boolean;
-}
 
 type UserModalFormProps = {
   control: Control<UserFormType, any>;
-  dirtyFields: DirtyFieldsType;
-  setValue: UseFormSetValue<UserFormType>
+  setValue: UseFormSetValue<UserFormType>;
 };
 
 export const UserModalForm = ({
   control,
-  dirtyFields,
   setValue,
 }: UserModalFormProps) => {
   const { t } = useTranslation();
   const [listPlace, setListPlace] = useState<PlaceType[]>([]);
+  const { dirtyFields } = useFormState({control});
 
   const searchRequest = useCallback(
     async (value: string) => {
@@ -106,10 +93,7 @@ export const UserModalForm = ({
               isOptionEqualToValue={(option, value) => option !== value}
               getOptionLabel={(option) => option.display_name || ""}
               value={field.value || ""}
-              onChange={(
-                event: SyntheticEvent<Element, Event>,
-                value: PlaceType | null
-              ) => {
+              onChange={(_, value: PlaceType | null) => {
                 field.onChange();
                 handleChange(value);
               }}
@@ -133,15 +117,25 @@ export const UserModalForm = ({
 
       <Controller
         control={control}
-        rules={{ required: true }}
+        rules={{
+          required: true,
+          pattern: {
+            value: /^\S+@\S+\.\S+$/,
+            message: t("validationEmailMessage"),
+          },
+        }}
         name="email"
         defaultValue={""}
-        render={({ field }) => (
+        render={({ field, fieldState, formState }) => (
           <TextFieldForm
+            helperText={formState.errors.email?.message}
             label={t("modals.userModal.email")}
             variant="standard"
             required
-            error={!!dirtyFields.email && !field.value?.length}
+            error={
+              (!!dirtyFields.email && !field.value?.length) ||
+              !!formState.errors.email
+            }
             value={field.value}
             onChange={field.onChange}
           />
