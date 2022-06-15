@@ -13,6 +13,7 @@ import { POSITION_CENTER } from "../../constants";
 import { getPlaceAdress } from "../../requestApi";
 import "leaflet/dist/leaflet.css";
 import '../../index.css';
+import { UserType } from "../../types";
 
 const icon = L.icon({
   iconUrl: "./placeholder.png",
@@ -21,10 +22,11 @@ const icon = L.icon({
 
 type MapProps = {
   handleSetPosition: (position: PlaceType) => void;
-  selectPosition: PlaceType;
+  homePosition: PlaceType | null;
+  selectPosition: PlaceType | null;
 }
 
-const MapEvents = ({selectPosition, handleSetPosition}: MapProps) => {
+const MapEvents = ({selectPosition, homePosition, handleSetPosition}: MapProps) => {
   const map = useMap();
 
   const setCenter = (lat: number, lng: number) => {
@@ -36,6 +38,10 @@ const MapEvents = ({selectPosition, handleSetPosition}: MapProps) => {
       }
     )
   };
+
+  useEffect(() => {
+    setCenter(Number(homePosition?.lat), Number(homePosition?.lon))
+  }, [homePosition]);
 
   useEffect(() => {
     if (selectPosition) {
@@ -65,8 +71,8 @@ const MapEvents = ({selectPosition, handleSetPosition}: MapProps) => {
   return null;
 }
 
-export const Map = ({selectPosition, handleSetPosition}: MapProps) => {
-  const locationSelection: LatLngTuple = [Number(selectPosition.lat), Number(selectPosition.lon)];
+export const Map = ({selectPosition, homePosition, handleSetPosition}: MapProps) => {
+  const locationSelection: LatLngTuple = [Number(selectPosition?.lat), Number(selectPosition?.lon)];
 
   return (
     <MapContainer
@@ -79,7 +85,7 @@ export const Map = ({selectPosition, handleSetPosition}: MapProps) => {
           <MarkerPopup selectPosition={selectPosition} />
         </Marker>
       )}
-      <MapEvents selectPosition={selectPosition} handleSetPosition={handleSetPosition} />
+      <MapEvents homePosition={homePosition} selectPosition={selectPosition} handleSetPosition={handleSetPosition} />
     </MapContainer>
   );
 }

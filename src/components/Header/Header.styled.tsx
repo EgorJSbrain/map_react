@@ -23,7 +23,7 @@ export const LangBlock = styled.div`
 `;
 
 export const LogOut = styled(LogoutIcon)`
-  color: #88f1ff;
+  color: #fff;
 
   :hover {
     cursor: pointer;

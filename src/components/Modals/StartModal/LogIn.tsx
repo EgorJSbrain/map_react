@@ -1,9 +1,10 @@
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { Controller, useForm, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { authAPI } from "../../../services/AuthService";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { userAuth } from "../../../store/actions";
 import { ContentTypes } from "./StartModal";
 import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from "./StartModal.styled";
 
@@ -25,26 +26,27 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
     mode: "onChange",
   });
   const navigation = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(state => state.auth.user);
   const { t } = useTranslation();
   const { dirtyFields } = useFormState({control});
-  const [logIn, { data }] = authAPI.useFetchLogInMutation();
 
   useEffect(() => {
-    data && navigation('/search')
-  }, [data, navigation]);
+    user && navigation('/search');
+  }, [user, navigation]);
 
   const onSubmit = useCallback(
     (data: UserFormType) => {
       try {
-        logIn({
+        dispatch(userAuth({
           password: data.password,
           email: data.email,
-        });
+        }));
       } catch (e) {
         console.log(e);
       }
     },
-    [logIn]
+    [userAuth]
   );
 
   return (

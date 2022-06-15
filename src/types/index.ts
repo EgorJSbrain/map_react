@@ -1,1 +1,2 @@
-export type { UserType, UserLogInData } from './user';
+export type { UserType } from './user';
+export type { authUserData } from './auth';

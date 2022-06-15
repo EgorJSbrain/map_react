@@ -3,17 +3,17 @@ import { useTranslation } from "react-i18next";
 // import LoginIcon from '@mui/icons-material/Login';
 import { LangSwither } from "./LangSwither";
 import { useCallback } from "react";
-import { useAppSelector } from "../../hooks";
-import { authAPI } from "../../services/AuthService";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Navbar } from "./Navbar";
 import { HeaderWrapper, LangBlock, LogOut } from "./Header.styled";
+import { userLogOut } from "../../store/actions";
 
 export const Header = () => {
   const { i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useAppSelector(state => state.auth)
-  const [ logOut ] = authAPI.useFetchLogOutMutation();
+  const { user } = useAppSelector(state => state.auth);
+  const dispatch = useAppDispatch();
 
   const isApp = location.pathname.includes("app");
 
@@ -22,9 +22,9 @@ export const Header = () => {
   }, [i18n]);
 
   const handleLogOut = useCallback(() => {
-    logOut({});
+    dispatch(userLogOut());
     navigate("/app");
-  }, [navigate, logOut]);
+  }, [navigate]);
 
   return (
     <HeaderWrapper isApp={isApp}>

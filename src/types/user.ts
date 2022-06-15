@@ -1,4 +1,4 @@
-import { AddressType, PlaceType } from "./place";
+import { PlaceType } from "./place";
 
 export type UserType = {
   firstName: string;
@@ -6,9 +6,4 @@ export type UserType = {
   address: PlaceType;
   email: string;
   password: string;
-}
-
-export type UserLogInData = {
-  password: string;
-  email: string
 }
