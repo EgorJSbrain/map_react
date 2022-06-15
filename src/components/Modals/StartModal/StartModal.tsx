@@ -5,7 +5,7 @@ import { fetchAllUsers } from "../../../store/actions/users";
 import { ModalDialog } from "../../ModalDialog";
 import { LogIn } from "./LogIn";
 import { SignUp } from "./SignUp";
-import { ContentWrapper } from "./styled";
+import { ContentWrapper } from "./StartModal.styled";
 
 export enum ContentTypes {
   signUp = 'sign-up',

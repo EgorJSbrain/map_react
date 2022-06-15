@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Links, Link } from "./Navbar.style";
+import { Links, Link } from "./Navbar.styled";
 
 export const Navbar = () => {
   const { t } = useTranslation();

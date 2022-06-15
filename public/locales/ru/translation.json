@@ -10,6 +10,7 @@
   "logInBtn": "Войти",
   "notExistedAccaunt": "Если у Вас нет учётной записи",
   "existedAccaunt": "Если у Вас есть учётная запись",
+  "validationEmailMessage": "Используйте правильный формат для электронной почты",
   "modals": {
     "userModal": {
       "title": "Привет!",
