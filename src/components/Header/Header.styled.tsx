@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from '@mui/icons-material/Login';
 
 export const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
@@ -20,6 +21,15 @@ export const LangBlock = styled.div`
   position: absolute;
   top: 12px;
   right: 16px;
+`;
+
+export const icon = styled(LogoutIcon)`
+  color: #fff;
+
+  :hover {
+    cursor: pointer;
+    color: #fff;
+  }
 `;
 
 export const LogOut = styled(LogoutIcon)`

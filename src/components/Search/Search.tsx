@@ -5,12 +5,14 @@ import { useCheckScreenSize } from "../../hooks";
 import { searchPlaces } from "../../requestApi";
 import { debounce } from "../../utils";
 import { Input, SearchWrapper } from "./Search.styled";
+import { useTranslation } from "react-i18next";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void
 }
 
 export const Search = ({ handleSetPosition }: SearchProps) => {
+  const { t } = useTranslation();
   const [listPlace, setListPlace] = useState<PlaceType[]>([]);
   const [isListVisible, setListVisible] = useState(false);
   const screenSize = useCheckScreenSize();
@@ -40,7 +42,7 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
     <SearchWrapper>
       <Input
         variant={isMobile ? "standard" : "outlined"}
-        placeholder="Address"
+        placeholder={t("address")}
         onChange={(event) => {
           debouncedChange(event.target.value);
         }}

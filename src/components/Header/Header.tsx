@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-// import LoginIcon from '@mui/icons-material/Login';
 import { LangSwither } from "./LangSwither";
 import { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
@@ -29,8 +28,8 @@ export const Header = () => {
   return (
     <HeaderWrapper isApp={isApp}>
       {!isApp && <Navbar />}
-      <LangBlock onClick={handleLogOut}>
-        {user && <LogOut />}
+      <LangBlock>
+        {user && <LogOut onClick={handleLogOut} />}
         <LangSwither changeLanguage={hnadleChangeLanguage} />
       </LangBlock>
     </HeaderWrapper>
