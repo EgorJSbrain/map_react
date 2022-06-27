@@ -2,25 +2,16 @@ import {
   Autocomplete,
 } from "@mui/material";
 import { useCallback, useState } from "react";
-import { Control, Controller, UseFormRegister, UseFormSetValue, useFormState } from "react-hook-form";
+import { Control, Controller, useFormContext, UseFormRegister, UseFormSetValue, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { searchPlaces } from "../../../requestApi";
 import { PlaceType } from "../../../types/place";
 import { debounce } from "../../../utils";
-import { UserFormType } from "./SignUp";
 import { FormWrapper, TextFieldForm } from "./StartModal.styled";
 
-
-type UserModalFormProps = {
-  control: Control<UserFormType, any>;
-  setValue: UseFormSetValue<UserFormType>;
-};
-
-export const UserModalForm = ({
-  control,
-  setValue,
-}: UserModalFormProps) => {
+export const UserModalForm = () => {
   const { t } = useTranslation();
+  const {control, setValue} = useFormContext();
   const [listPlace, setListPlace] = useState<PlaceType[]>([]);
   const { dirtyFields } = useFormState({control});
 

@@ -15,8 +15,13 @@ import "leaflet/dist/leaflet.css";
 import '../../index.css';
 import { UserType } from "../../types";
 
-const icon = L.icon({
+const markerIcon = L.icon({
   iconUrl: "./placeholder.png",
+  iconSize: [38, 38],
+});
+
+const homeIcon = L.icon({
+  iconUrl: "./house.png",
   iconSize: [38, 38],
 });
 
@@ -40,14 +45,16 @@ const MapEvents = ({selectPosition, homePosition, handleSetPosition}: MapProps) 
   };
 
   useEffect(() => {
-    setCenter(Number(homePosition?.lat), Number(homePosition?.lon))
+    if (homePosition) {
+      setCenter(Number(homePosition?.lat), Number(homePosition?.lon))
+    }
   }, [homePosition]);
 
   useEffect(() => {
     if (selectPosition) {
       setCenter(Number(selectPosition.lat), Number(selectPosition.lon));
     }
-  }, [selectPosition]);
+  }, [selectPosition, homePosition]);
 
   const handleMapClick = useCallback(async (e: L.LeafletMouseEvent) => {
     try {
@@ -72,7 +79,8 @@ const MapEvents = ({selectPosition, homePosition, handleSetPosition}: MapProps) 
 }
 
 export const Map = ({selectPosition, homePosition, handleSetPosition}: MapProps) => {
-  const locationSelection: LatLngTuple = [Number(selectPosition?.lat), Number(selectPosition?.lon)];
+  const selectedLocation: LatLngTuple = [Number(selectPosition?.lat), Number(selectPosition?.lon)];
+  const homeLocation: LatLngTuple = [Number(homePosition?.lat), Number(homePosition?.lon)];
 
   return (
     <MapContainer
@@ -80,9 +88,14 @@ export const Map = ({selectPosition, homePosition, handleSetPosition}: MapProps)
       zoom={8}
     >
       <MapLayer />
-      {selectPosition && (
-        <Marker position={locationSelection} icon={icon}>
+      {(selectPosition) && (
+        <Marker position={selectedLocation} icon={markerIcon}>
           <MarkerPopup selectPosition={selectPosition} />
+        </Marker>
+      )}
+      {(homePosition) && (
+        <Marker position={homeLocation} icon={homeIcon}>
+          <MarkerPopup selectPosition={homePosition} />
         </Marker>
       )}
       <MapEvents homePosition={homePosition} selectPosition={selectPosition} handleSetPosition={handleSetPosition} />

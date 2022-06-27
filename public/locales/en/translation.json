@@ -11,6 +11,7 @@
   "notExistedAccaunt": "If you don't have accaunt",
   "existedAccaunt": "If you have accaunt",
   "validationEmailMessage": "Use correct format for email",
+  "address": "Address",
   "modals": {
     "userModal": {
       "title": "Hello!",

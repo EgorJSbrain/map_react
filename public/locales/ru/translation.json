@@ -11,6 +11,7 @@
   "notExistedAccaunt": "Если у Вас нет учётной записи",
   "existedAccaunt": "Если у Вас есть учётная запись",
   "validationEmailMessage": "Используйте правильный формат для электронной почты",
+  "address": "Адрес",
   "modals": {
     "userModal": {
       "title": "Привет!",

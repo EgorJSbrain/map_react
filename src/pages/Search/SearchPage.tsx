@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Map, Search } from "../../components";
-import { position } from "../../constants";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 import { getPlaceAdress } from "../../requestApi";
 import { userSet } from "../../store/reducers/authSlice";
 import { PlaceType } from "../../types/place";
@@ -11,15 +10,6 @@ export const SearchPage = () => {
   const [selectPosition, setSelectPosition] = useState<PlaceType | null>(null);
   const [homePosition, setHomePosition] = useState<PlaceType | null>(null);
   const dispatch = useAppDispatch();
-  const { user } = useAppSelector(state => state.auth)
-
-  // useEffect(() => {
-  //   const user = localStorage.getItem('user');
-
-  //   if (user) {
-  //     dispatch(userSet(JSON.parse(user)));
-  //   }
-  // }, []);
 
   useEffect(() => {
     (async function () {
