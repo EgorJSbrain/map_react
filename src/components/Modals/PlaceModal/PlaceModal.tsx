@@ -31,6 +31,7 @@ export const PlaceModal = ({isOpen, selectedPosition, handleClose}: PlaceModalPr
       console.log(err);
     } finally {
       handleClose();
+      setDescription('');
     }
   }, [selectedPosition, description]);
 

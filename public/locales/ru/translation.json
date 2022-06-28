@@ -8,12 +8,15 @@
   "navCards": "КАРТОЧКИ",
   "signUpBtn": "Регистрация",
   "logInBtn": "Войти",
+  "logOut": "Выйти",
   "notExistedAccaunt": "Если у Вас нет учётной записи",
   "existedAccaunt": "Если у Вас есть учётная запись",
   "validationEmailMessage": "Используйте правильный формат для электронной почты",
   "address": "Адрес",
   "description": "Описание",
   "create": "Создать",
+  "delete": "Удалить",
+  "edit": "Редактировать",
   "modals": {
     "userModal": {
       "title": "Привет!",

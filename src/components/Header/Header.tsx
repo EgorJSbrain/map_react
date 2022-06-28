@@ -6,9 +6,10 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Navbar } from "./Navbar";
 import { HeaderWrapper, LangBlock, LogOut } from "./Header.styled";
 import { userLogOut } from "../../store/actions";
+import { Box } from "@mui/material";
 
 export const Header = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAppSelector(state => state.auth);
@@ -29,7 +30,7 @@ export const Header = () => {
     <HeaderWrapper isApp={isApp}>
       {!isApp && <Navbar />}
       <LangBlock>
-        {user && <LogOut onClick={handleLogOut} />}
+        {user && <LogOut onClick={handleLogOut}>{t("logOut")}</LogOut>}
         <LangSwither changeLanguage={hnadleChangeLanguage} />
       </LangBlock>
     </HeaderWrapper>
