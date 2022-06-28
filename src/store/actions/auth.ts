@@ -1,14 +1,14 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authUserRequest, logOutUserRequest } from "../../requestApi";
+import { authApi } from "../../requestApi";
 import { authUserData, UserType } from "../../types";
-import { fetchAllUsers } from "./users";
+import { usersAllRequest } from "./users";
 
 export const userAuth = createAsyncThunk(
   'auth/logIn',
   async (authData: authUserData, { rejectWithValue, dispatch }) => {
 
     try {
-      const usersRes = await dispatch(fetchAllUsers());
+      const usersRes = await dispatch(usersAllRequest());
       let response;
 
       if (usersRes.payload && !!usersRes.payload.length) {
@@ -16,7 +16,7 @@ export const userAuth = createAsyncThunk(
         const currentUser = users.find(user => user.email === authData.email);
 
         if (currentUser) {
-          const authRes = await authUserRequest(authData);
+          const authRes = await authApi.auth(authData);
 
           if (authRes) {
             response = currentUser;
@@ -44,7 +44,7 @@ export const userLogOut = createAsyncThunk(
   async (_, { rejectWithValue }) => {
 
     try {
-      const response = await logOutUserRequest();
+      const response = await authApi.logOut();
 
       if (!response) {
         throw new Error('Server error')

@@ -2,9 +2,9 @@ import {
   Autocomplete,
 } from "@mui/material";
 import { useCallback, useState } from "react";
-import { Control, Controller, useFormContext, UseFormRegister, UseFormSetValue, useFormState } from "react-hook-form";
+import { Controller, useFormContext, useFormState } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { searchPlaces } from "../../../requestApi";
+import { placeApi } from "../../../requestApi";
 import { PlaceType } from "../../../types/place";
 import { debounce } from "../../../utils";
 import { FormWrapper, TextFieldForm } from "./StartModal.styled";
@@ -18,7 +18,7 @@ export const UserModalForm = () => {
   const searchRequest = useCallback(
     async (value: string) => {
       try {
-        const data: PlaceType[] = await searchPlaces(value);
+        const data: PlaceType[] = await placeApi.search(value);
 
         if (data) {
           setListPlace(data);

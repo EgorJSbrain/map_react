@@ -12,6 +12,8 @@
   "existedAccaunt": "If you have accaunt",
   "validationEmailMessage": "Use correct format for email",
   "address": "Address",
+  "description": "Description",
+  "create": "Create",
   "modals": {
     "userModal": {
       "title": "Hello!",
@@ -21,6 +23,9 @@
       "city": "City",
       "email": "Email",
       "password": "Password"
+    },
+    "placeModal": {
+      "title": "Create place"
     }
   }
 }

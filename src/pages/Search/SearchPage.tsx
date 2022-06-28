@@ -1,26 +1,31 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Map, Search } from "../../components";
-import { useAppDispatch } from "../../hooks";
-import { getPlaceAdress } from "../../requestApi";
+import { PlaceModal } from "../../components/Modals";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { placeApi } from "../../requestApi";
+import { pointsAllRequest } from "../../store/actions";
 import { userSet } from "../../store/reducers/authSlice";
 import { PlaceType } from "../../types/place";
-import { AppWrapper } from "./SearchPage.styled";
+import { AddPlace, AddPlaceIcon, AppWrapper } from "./SearchPage.styled";
 
 export const SearchPage = () => {
-  const [selectPosition, setSelectPosition] = useState<PlaceType | null>(null);
+  const [selectedPosition, setSelectedPosition] = useState<PlaceType | null>(null);
   const [homePosition, setHomePosition] = useState<PlaceType | null>(null);
+  const [isCreatePlaceModal, setCreateModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const { points } = useAppSelector(state => state.points)
 
   useEffect(() => {
     (async function () {
       const user = localStorage.getItem("user");
+      dispatch(pointsAllRequest());
 
       if (user) {
         const parsedUser = JSON.parse(user)
         dispatch(userSet(parsedUser));
 
-        if (!selectPosition && user) {
-          const currentPlace: PlaceType = await getPlaceAdress(
+        if (!selectedPosition && user) {
+          const currentPlace: PlaceType = await placeApi.getPlaces(
             Number(parsedUser.address.lat),
             Number(parsedUser.address.lon)
           );
@@ -34,19 +39,35 @@ export const SearchPage = () => {
     })();
   }, []);
 
-  const handleSetPosition = (position: PlaceType) => {
-    setSelectPosition(position);
-  };
+  const handleSetPosition = useCallback((position: PlaceType) => {
+    setSelectedPosition(position);
+  }, []);
+
+  const handleModalVisible = useCallback(() => {
+    selectedPosition && setCreateModal((isModalVisible) => !isModalVisible);
+  }, [selectedPosition]);
 
   return (
-    <AppWrapper data-testid={'search-page'}>
+    <AppWrapper data-testid={"search-page"}>
       <Search handleSetPosition={handleSetPosition} />
 
-      {(selectPosition || homePosition) && (
+      {(selectedPosition || homePosition) && (
         <Map
-          selectPosition={selectPosition}
+          selectPosition={selectedPosition}
           homePosition={homePosition}
           handleSetPosition={handleSetPosition}
+          points={points}
+        />
+      )}
+      <AddPlace onClick={handleModalVisible}>
+        <AddPlaceIcon />
+      </AddPlace>
+
+      {selectedPosition && (
+        <PlaceModal
+          isOpen={isCreatePlaceModal}
+          handleClose={handleModalVisible}
+          selectedPosition={selectedPosition}
         />
       )}
     </AppWrapper>

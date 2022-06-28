@@ -1,16 +1,17 @@
 import { instanceApi } from "../axios";
 import { UserType } from "../types";
 
-export const usersAllRequest = async () => {
-  const { data } = await instanceApi.get("users");
+export const userApi = {
+  getAll: async () =>  {
+    const { data } = await instanceApi.get("users");
 
-  return data;
-};
+    return data;
+  },
+  register: async (userData: UserType) => {
+    const { data } = await instanceApi.post("users", {
+      ...userData
+    });
 
-export const userAddRequest = async (userData: UserType) => {
-  const { data } = await instanceApi.post("users", {
-    ...userData
-  });
-
-  return data;
+    return data;
+  }
 };

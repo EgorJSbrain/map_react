@@ -2,8 +2,14 @@
   height: calc(100vh - 175px);
   width: 100vw;
 }
+
 .leaflet-marker-pane .leaflet-interactive {
-  margin-top: -36px !important
+  margin-top: -36px !important;
+}
+
+.leaflet-marker-pane .leaflet-interactive.point-icon {
+  margin-left: -14px !important;
+  margin-top: -32px !important;
 }
 
 @media (min-width: 720px) {

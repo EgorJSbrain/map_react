@@ -1,11 +1,11 @@
+import { Box } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch } from "../../../hooks";
-import { fetchAllUsers } from "../../../store/actions/users";
+import { usersAllRequest } from "../../../store/actions/users";
 import { ModalDialog } from "../../ModalDialog";
 import { LogIn } from "./LogIn";
 import { SignUp } from "./SignUp";
-import { ContentWrapper } from "./StartModal.styled";
 
 export enum ContentTypes {
   signUp = 'sign-up',
@@ -26,7 +26,7 @@ export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
   const isLogIn = contentType === ContentTypes.logIn;
 
   useEffect(() => {
-    dispatch(fetchAllUsers());
+    dispatch(usersAllRequest());
   }, [dispatch]);
 
   const handleSetType = useCallback((value: string) => {
@@ -39,13 +39,13 @@ export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
       onClose={handleClose}
       open={isOpen}
     >
-      <ContentWrapper data-testid={"home-modal"}>
+      <Box data-testid={"home-modal"}>
         {isSignUp && (
           <SignUp handleClose={handleClose} handleSetType={handleSetType} />
         )}
 
         {isLogIn && <LogIn handleSetType={handleSetType} />}
-      </ContentWrapper>
+      </Box>
     </ModalDialog>
   );
 };

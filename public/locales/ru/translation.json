@@ -12,6 +12,8 @@
   "existedAccaunt": "Если у Вас есть учётная запись",
   "validationEmailMessage": "Используйте правильный формат для электронной почты",
   "address": "Адрес",
+  "description": "Описание",
+  "create": "Создать",
   "modals": {
     "userModal": {
       "title": "Привет!",
@@ -21,6 +23,9 @@
       "city": "Город",
       "email": "Почта",
       "password": "Пароль"
+    },
+    "placeModal": {
+      "title": "Создать точку"
     }
   }
 }

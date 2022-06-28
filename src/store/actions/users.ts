@@ -1,13 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { userAddRequest, usersAllRequest } from "../../requestApi";
+import { userApi } from "../../requestApi";
 import { UserType } from "../../types";
 
-export const fetchAllUsers = createAsyncThunk(
+export const usersAllRequest = createAsyncThunk(
   'users/fetchAllUsers',
   async (_, { rejectWithValue }) => {
 
     try {
-      const response = await usersAllRequest();
+      const response = await userApi.getAll();
 
       if (!response) {
         throw new Error('Server error')
@@ -21,11 +21,11 @@ export const fetchAllUsers = createAsyncThunk(
   }
 );
 
-export const addUser = createAsyncThunk(
+export const userRegister = createAsyncThunk(
   'users/addUser',
   async (data: UserType, { rejectWithValue }) => {
     try {
-      const response = await userAddRequest(data);
+      const response = await userApi.register(data);
 
       if (!response.ok) {
         throw new Error('Server error')
