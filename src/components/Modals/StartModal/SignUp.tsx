@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import { UserModalForm } from "./UserModalForm";
 import { PlaceType } from "../../../types/place";
 import { ContentTypes } from "./StartModal";
-import { addUser } from "../../../store/actions";
 import { useAppDispatch } from "../../../hooks";
 import { CentredWrapper, LinkBox, LinkBoxInfo } from "./StartModal.styled";
+import { userRegister } from "../../../store/actions";
 
 export type UserFormType = {
   firstName: string;
@@ -34,7 +34,7 @@ export const SignUp = ({
 
   const onSubmit = useCallback(
     async (data: UserFormType) => {
-        const response = await dispatch(addUser(data));
+        const response = await dispatch(userRegister(data));
 
         if (response.payload) {
           handleClose();
@@ -47,6 +47,7 @@ export const SignUp = ({
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <UserModalForm />
+
         <CentredWrapper>
           <Button sx={{ mb: 2 }} disabled={!form.formState.isValid} type="submit">
             {t("signUpBtn")}

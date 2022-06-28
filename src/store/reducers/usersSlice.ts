@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { UserType } from "../../types";
-import { fetchAllUsers } from "../actions/users";
+import { usersAllRequest } from "../actions/users";
 
 interface UsersState {
   users: UserType[];
@@ -20,15 +20,15 @@ const usersSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [fetchAllUsers.fulfilled.type]: (state, action: PayloadAction<UserType[]>) => {
+    [usersAllRequest.fulfilled.type]: (state, action: PayloadAction<UserType[]>) => {
       state.isLoading = false;
       state.error = '';
       state.users = action.payload;
     },
-    [fetchAllUsers.pending.type]: (state) => {
+    [usersAllRequest.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [fetchAllUsers.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
+    [usersAllRequest.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
       state.isLoading = false;
       state.error = action.payload.message;
     },

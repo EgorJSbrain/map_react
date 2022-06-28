@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../hooks";
-import { searchPlaces } from "../../requestApi";
 import { debounce } from "../../utils";
 import { Input, SearchWrapper } from "./Search.styled";
 import { useTranslation } from "react-i18next";
+import { placeApi } from "../../requestApi";
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void
@@ -20,10 +20,10 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
 
   const searchRequest = useCallback(async (value: string) => {
     try {
-      const data: PlaceType[] = await searchPlaces(value);
+      const response: PlaceType[] = await placeApi.search(value);
 
-      if (data) {
-        setListPlace(data);
+      if (response) {
+        setListPlace(response);
         setListVisible(true);
       }
     } catch (e) {
