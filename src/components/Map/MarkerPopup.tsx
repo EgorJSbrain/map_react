@@ -1,44 +1,46 @@
 import { Box } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Popup } from "react-leaflet";
+import { PointType } from "../../types";
 import { PlaceType } from "../../types/place"
 import { Delete, Description, Edit, IconsWrapper } from "./styled";
 
 
 type MarkerPopupProps = {
-  selectPosition: PlaceType;
-  description?: string;
-  id?: number;
+  // selectPosition: PlaceType;
+  // description?: string;
+  // id?: number;
+  point: PlaceType | PointType;
   handlePointDelete?: (id: number) => void;
+  handlePointEdit?: (point: PointType) => void;
 }
 
 export const MarkerPopup = ({
-  selectPosition,
-  description,
-  id,
-  handlePointDelete
+  point,
+  handlePointDelete,
+  handlePointEdit,
 }: MarkerPopupProps) => {
   const { t } = useTranslation();
 
   return (
     <Popup>
       <Box>
-        {`${selectPosition.address.country || ""}${
-          selectPosition.address.city ? ", " + selectPosition.address.city : ""
-        }${selectPosition.address.town ? ", " + selectPosition.address.town : ""}${
-          selectPosition.address.village
-            ? ", " + selectPosition.address.village
+        {`${point.address.country || ""}${
+          point.address.city ? ", " + point.address.city : ""
+        }${point.address.town ? ", " + point.address.town : ""}${
+          point.address.village
+            ? ", " + point.address.village
             : ""
         }`}
       </Box>
 
       <Description>
-        {description}
+        {('description' in point) && point.description}
       </Description>
 
-      {id && handlePointDelete && <IconsWrapper>
-        <Edit>{t('edit')}</Edit>
-        <Delete onClick={() => handlePointDelete(id)}>{t('delete')}</Delete>
+      {('id' in point) && handlePointDelete && handlePointEdit && <IconsWrapper>
+        <Edit onClick={() => handlePointEdit(point as PointType)}>{t('edit')}</Edit>
+        <Delete onClick={() => handlePointDelete(point.id)}>{t('delete')}</Delete>
       </IconsWrapper>}
     </Popup>
   )

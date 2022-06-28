@@ -20,6 +20,7 @@ interface MapProps {
   points: PointType[];
   handleSetPosition: (position: PlaceType) => void;
   handlePointDelete: (id: number) => void;
+  handlePointEdit: (point: PointType) => void;
 }
 
 export const Map = ({
@@ -28,6 +29,7 @@ export const Map = ({
   points,
   handleSetPosition,
   handlePointDelete,
+  handlePointEdit,
 }: MapProps) => {
   const selectedLocation: LatLngTuple = [
     Number(selectPosition?.lat),
@@ -44,21 +46,21 @@ export const Map = ({
 
       {selectPosition && (
         <Marker position={selectedLocation} icon={IconsMap.markerIcon}>
-          <MarkerPopup selectPosition={selectPosition} />
+          <MarkerPopup point={selectPosition} />
         </Marker>
       )}
 
       {homePosition && (
         <Marker position={homeLocation} icon={IconsMap.homeIcon}>
-          <MarkerPopup selectPosition={homePosition} />
+          <MarkerPopup point={homePosition} />
         </Marker>
       )}
 
       {points &&
         points.map((point) => {
           const pointLocation: LatLngTuple = [
-            Number(point?.place.lat),
-            Number(point?.place.lon),
+            Number(point?.lat),
+            Number(point?.lon),
           ];
 
           return (
@@ -68,10 +70,9 @@ export const Map = ({
               icon={IconsMap.pointIcon}
             >
               <MarkerPopup
-                selectPosition={point.place}
-                description={point.description}
-                id={point.id}
+                point={point}
                 handlePointDelete={handlePointDelete}
+                handlePointEdit={handlePointEdit}
               />
             </Marker>
           );

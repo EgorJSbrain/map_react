@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { pointsApi } from "../../requestApi";
-import { PointDto } from "../../types/points";
+import { PointDto, PointType } from "../../types/points";
 
 
 export const pointsAllRequest = createAsyncThunk(
@@ -28,6 +28,25 @@ export const pointCreate = createAsyncThunk(
 
     try {
       const response = await pointsApi.create(data);
+
+      if (!response) {
+        throw new Error('Server error')
+      }
+
+      return response;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e)
+    }
+  }
+);
+
+export const pointEdit = createAsyncThunk(
+  'points/edit',
+  async (data: PointType, { rejectWithValue }) => {
+
+    try {
+      const response = await pointsApi.edit(data);
 
       if (!response) {
         throw new Error('Server error')

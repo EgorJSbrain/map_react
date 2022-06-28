@@ -28,7 +28,8 @@
       "password": "Password"
     },
     "placeModal": {
-      "title": "Create place"
+      "createTitle": "Create point",
+      "editTitle": "Edit point"
     }
   }
 }

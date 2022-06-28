@@ -1,5 +1,5 @@
 import { instanceApi } from "../axios";
-import { PointDto } from "../types/points";
+import { PointDto, PointType } from "../types/points";
 
 export const pointsApi = {
   getAll: async () => {
@@ -9,6 +9,13 @@ export const pointsApi = {
   },
   create: async (place: PointDto) => {
     const { data } = await instanceApi.post('points', {
+      ...place
+    })
+
+    return data;
+  },
+  edit: async (place: PointType) => {
+    const { data } = await instanceApi.patch<{data: PointType}>(`points/${place.id}`, {
       ...place
     })
 
