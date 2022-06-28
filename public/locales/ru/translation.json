@@ -28,7 +28,8 @@
       "password": "Пароль"
     },
     "placeModal": {
-      "title": "Создать точку"
+      "createTitle": "Создать точку",
+      "editTitle": "Редактировать точку"
     }
   }
 }

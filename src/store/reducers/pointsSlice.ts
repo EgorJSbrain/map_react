@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { PointType } from "../../types";
-import { pointsAllRequest, pointCreate, pointDelete } from "../actions";
+import { pointsAllRequest, pointCreate, pointDelete, pointEdit } from "../actions";
 
 interface PointsState {
   points: PointType[];
@@ -53,6 +53,18 @@ const pointsSlice = createSlice({
       state.isLoading = true;
     },
     [pointDelete.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
+      state.isLoading = false;
+      state.error = action.payload.message;
+    },
+    [pointEdit.fulfilled.type]: (state, action: PayloadAction<PointType>) => {
+      state.isLoading = false;
+      state.error = '';
+      state.points = [...state.points.filter(point => point.id !== action.payload.id), action.payload]
+    },
+    [pointEdit.pending.type]: (state) => {
+      state.isLoading = true;
+    },
+    [pointEdit.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
       state.isLoading = false;
       state.error = action.payload.message;
     },

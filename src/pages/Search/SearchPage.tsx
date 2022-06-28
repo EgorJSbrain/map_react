@@ -6,6 +6,7 @@ import { placeApi } from "../../requestApi";
 import { pointDelete, pointsAllRequest } from "../../store/actions";
 import { userSet } from "../../store/reducers/authSlice";
 import { getPoints } from "../../store/selectors";
+import { PointType } from "../../types";
 import { PlaceType } from "../../types/place";
 import { AddPoint, AddPointIcon, AppWrapper } from "./SearchPage.styled";
 
@@ -14,8 +15,9 @@ export const SearchPage = () => {
   const { points } = useAppSelector(getPoints);
 
   const [selectedPosition, setSelectedPosition] = useState<PlaceType | null>(null);
+  const [editedPoint, setEditedPoint] = useState<PointType | null>(null);
   const [homePosition, setHomePosition] = useState<PlaceType | null>(null);
-  const [isCreatePlaceModal, setCreateModal] = useState<boolean>(false);
+  const [isModalVisible, setModalVisible] = useState<boolean>(false);
 
   useEffect(() => {
     (async function () {
@@ -46,11 +48,22 @@ export const SearchPage = () => {
   }, []);
 
   const handleModalVisible = useCallback(() => {
-    selectedPosition && setCreateModal((isModalVisible) => !isModalVisible);
-  }, [selectedPosition]);
+    setModalVisible((isModalVisible) => !isModalVisible);
+  }, []);
+
+  const handleModalClose = useCallback(() => {
+    setModalVisible(false);
+    setEditedPoint(null);
+    setSelectedPosition(null);
+  }, []);
 
   const handlePointDelete = useCallback((id: number) => {
     dispatch(pointDelete(id));
+  }, []);
+
+  const handlePointEdit = useCallback((point: PointType) => {
+    setEditedPoint(point);
+    setModalVisible(true);
   }, []);
 
   return (
@@ -61,9 +74,10 @@ export const SearchPage = () => {
         <Map
           selectPosition={selectedPosition}
           homePosition={homePosition}
-          handleSetPosition={handleSetPosition}
           points={points}
+          handleSetPosition={handleSetPosition}
           handlePointDelete={handlePointDelete}
+          handlePointEdit={handlePointEdit}
         />
       )}
 
@@ -71,11 +85,12 @@ export const SearchPage = () => {
         <AddPointIcon />
       </AddPoint>
 
-      {selectedPosition && (
+      {(editedPoint || selectedPosition) && isModalVisible && (
         <PlaceModal
-          isOpen={isCreatePlaceModal}
-          handleClose={handleModalVisible}
+          isOpen={isModalVisible}
+          handleClose={handleModalClose}
           selectedPosition={selectedPosition}
+          editedPoint={editedPoint}
         />
       )}
     </AppWrapper>

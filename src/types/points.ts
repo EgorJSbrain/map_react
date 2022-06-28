@@ -2,9 +2,8 @@ import { PlaceType } from "./place";
 
 
 export type PointDto = {
-  place: PlaceType,
   description: string;
-};
+} & PlaceType;
 
 export type PointType = {
   id: number;
