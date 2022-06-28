@@ -40,3 +40,22 @@ export const pointCreate = createAsyncThunk(
     }
   }
 );
+
+export const pointDelete = createAsyncThunk(
+  'points/delete',
+  async (id: number, { rejectWithValue }) => {
+
+    try {
+      const response = await pointsApi.delete(id);
+
+      if (!response) {
+        throw new Error('Server error')
+      }
+
+      return id;
+    } catch (e) {
+      console.log(e);
+      return rejectWithValue(e)
+    }
+  }
+);

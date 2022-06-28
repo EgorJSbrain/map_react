@@ -8,7 +8,7 @@ export const AppWrapper = styled.div`
   margin-top: 66px;
 `;
 
-export const AddPlace = styled.div`
+export const AddPoint = styled.div`
   width: 80px;
   height: 80px;
   position: absolute;
@@ -23,7 +23,7 @@ export const AddPlace = styled.div`
   align-items: center;
 `;
 
-export const AddPlaceIcon = styled(AddLocationAltIcon)`
+export const AddPointIcon = styled(AddLocationAltIcon)`
   color: white;
   height: 40px !important;
   width: 40px !important;

@@ -8,12 +8,15 @@
   "navCards": "CARDS",
   "signUpBtn": "Register",
   "logInBtn": "Login",
+  "logOut": "Log Out",
   "notExistedAccaunt": "If you don't have accaunt",
   "existedAccaunt": "If you have accaunt",
   "validationEmailMessage": "Use correct format for email",
   "address": "Address",
   "description": "Description",
   "create": "Create",
+  "delete": "Delete",
+  "edit": "Edit",
   "modals": {
     "userModal": {
       "title": "Hello!",

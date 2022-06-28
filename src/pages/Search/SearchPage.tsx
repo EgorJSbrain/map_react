@@ -3,17 +3,19 @@ import { Map, Search } from "../../components";
 import { PlaceModal } from "../../components/Modals";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { placeApi } from "../../requestApi";
-import { pointsAllRequest } from "../../store/actions";
+import { pointDelete, pointsAllRequest } from "../../store/actions";
 import { userSet } from "../../store/reducers/authSlice";
+import { getPoints } from "../../store/selectors";
 import { PlaceType } from "../../types/place";
-import { AddPlace, AddPlaceIcon, AppWrapper } from "./SearchPage.styled";
+import { AddPoint, AddPointIcon, AppWrapper } from "./SearchPage.styled";
 
 export const SearchPage = () => {
+  const dispatch = useAppDispatch();
+  const { points } = useAppSelector(getPoints);
+
   const [selectedPosition, setSelectedPosition] = useState<PlaceType | null>(null);
   const [homePosition, setHomePosition] = useState<PlaceType | null>(null);
   const [isCreatePlaceModal, setCreateModal] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const { points } = useAppSelector(state => state.points)
 
   useEffect(() => {
     (async function () {
@@ -47,6 +49,10 @@ export const SearchPage = () => {
     selectedPosition && setCreateModal((isModalVisible) => !isModalVisible);
   }, [selectedPosition]);
 
+  const handlePointDelete = useCallback((id: number) => {
+    dispatch(pointDelete(id));
+  }, []);
+
   return (
     <AppWrapper data-testid={"search-page"}>
       <Search handleSetPosition={handleSetPosition} />
@@ -57,11 +63,13 @@ export const SearchPage = () => {
           homePosition={homePosition}
           handleSetPosition={handleSetPosition}
           points={points}
+          handlePointDelete={handlePointDelete}
         />
       )}
-      <AddPlace onClick={handleModalVisible}>
-        <AddPlaceIcon />
-      </AddPlace>
+
+      <AddPoint onClick={handleModalVisible}>
+        <AddPointIcon />
+      </AddPoint>
 
       {selectedPosition && (
         <PlaceModal
