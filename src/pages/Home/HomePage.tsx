@@ -8,7 +8,7 @@ import {
   Sircle,
   Cursor,
   StartButton,
-} from "./HomePage.styled";
+} from "./styled";
 
 const APP_TITLE = 'Touch';
 

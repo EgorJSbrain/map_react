@@ -1,5 +1,5 @@
 import { instanceApi } from "../axios";
-import { UserType } from "../types";
+import { UserTypeDto } from "../types";
 
 export const userApi = {
   getAll: async () =>  {
@@ -7,7 +7,7 @@ export const userApi = {
 
     return data;
   },
-  register: async (userData: UserType) => {
+  register: async (userData: UserTypeDto) => {
     const { data } = await instanceApi.post("users", {
       ...userData
     });

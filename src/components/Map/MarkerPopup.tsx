@@ -3,22 +3,20 @@ import { useTranslation } from "react-i18next";
 import { Popup } from "react-leaflet";
 import { PointType } from "../../types";
 import { PlaceType } from "../../types/place"
-import { Delete, Description, Edit, IconsWrapper } from "./styled";
-
+import { AddCard, Delete, Description, Edit, IconsWrapper } from "./styled";
 
 type MarkerPopupProps = {
-  // selectPosition: PlaceType;
-  // description?: string;
-  // id?: number;
   point: PlaceType | PointType;
   handlePointDelete?: (id: number) => void;
   handlePointEdit?: (point: PointType) => void;
-}
+  handleCardCreate?: (point: PointType) => void;
+};
 
 export const MarkerPopup = ({
   point,
   handlePointDelete,
   handlePointEdit,
+  handleCardCreate,
 }: MarkerPopupProps) => {
   const { t } = useTranslation();
 
@@ -38,10 +36,17 @@ export const MarkerPopup = ({
         {('description' in point) && point.description}
       </Description>
 
-      {('id' in point) && handlePointDelete && handlePointEdit && <IconsWrapper>
-        <Edit onClick={() => handlePointEdit(point as PointType)}>{t('edit')}</Edit>
-        <Delete onClick={() => handlePointDelete(point.id)}>{t('delete')}</Delete>
-      </IconsWrapper>}
+      {('id' in point)
+        && handlePointDelete
+        && handlePointEdit
+        && handleCardCreate
+        && (
+          <IconsWrapper>
+            <Edit onClick={() => handlePointEdit(point)}>{t('edit')}</Edit>
+            <Delete onClick={() => handlePointDelete(point.id)}>{t('delete')}</Delete>
+            <AddCard onClick={() => handleCardCreate(point)} />
+          </IconsWrapper>
+        )}
     </Popup>
   )
 };

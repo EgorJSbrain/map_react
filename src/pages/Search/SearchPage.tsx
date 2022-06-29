@@ -3,12 +3,12 @@ import { Map, Search } from "../../components";
 import { PlaceModal } from "../../components/Modals";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { placeApi } from "../../requestApi";
-import { pointDelete, pointsAllRequest } from "../../store/actions";
+import { cardCreate, pointDelete, pointsAllRequest } from "../../store/actions";
 import { userSet } from "../../store/reducers/authSlice";
 import { getPoints } from "../../store/selectors";
-import { PointType } from "../../types";
+import { CardStatuses, PointType } from "../../types";
 import { PlaceType } from "../../types/place";
-import { AddPoint, AddPointIcon, AppWrapper } from "./SearchPage.styled";
+import { AddPoint, AddPointIcon, AppWrapper } from "./styled";
 
 export const SearchPage = () => {
   const dispatch = useAppDispatch();
@@ -41,33 +41,43 @@ export const SearchPage = () => {
 
       }
     })();
-  }, []);
+  }, [selectedPosition, dispatch]);
 
   const handleSetPosition = useCallback((position: PlaceType) => {
     setSelectedPosition(position);
-  }, []);
+  }, [setSelectedPosition]);
 
   const handleModalVisible = useCallback(() => {
     setModalVisible((isModalVisible) => !isModalVisible);
-  }, []);
+  }, [setModalVisible]);
 
   const handleModalClose = useCallback(() => {
     setModalVisible(false);
     setEditedPoint(null);
     setSelectedPosition(null);
-  }, []);
+  }, [setSelectedPosition, setModalVisible, setEditedPoint]);
 
   const handlePointDelete = useCallback((id: number) => {
     dispatch(pointDelete(id));
-  }, []);
+  }, [dispatch]);
 
   const handlePointEdit = useCallback((point: PointType) => {
     setEditedPoint(point);
     setModalVisible(true);
+  }, [setEditedPoint, setModalVisible]);
+
+  const handleCardCreate = useCallback((point: PointType) => {
+    dispatch(
+      cardCreate({
+        point,
+        description: "",
+        status: CardStatuses.new,
+      })
+    );
   }, []);
 
   return (
-    <AppWrapper data-testid={"search-page"}>
+    <AppWrapper data-testid="search-page">
       <Search handleSetPosition={handleSetPosition} />
 
       {(selectedPosition || homePosition) && (
@@ -78,6 +88,7 @@ export const SearchPage = () => {
           handleSetPosition={handleSetPosition}
           handlePointDelete={handlePointDelete}
           handlePointEdit={handlePointEdit}
+          handleCardCreate={handleCardCreate}
         />
       )}
 

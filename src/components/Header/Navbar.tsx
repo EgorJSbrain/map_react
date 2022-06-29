@@ -8,7 +8,7 @@ export const Navbar = () => {
     <Links>
       <Link to="/app" data-testid={'home-link'}>{t("navHome")}</Link>
       <Link to="/search" data-testid={'search-link'}>{t("navMap")}</Link>
-      <Link to="/dashboard" data-testid={'cards-link'}>{t("navCards")}</Link>
+      <Link to="/cards" data-testid={'cards-link'}>{t("navCards")}</Link>
     </Links>
   );
 };

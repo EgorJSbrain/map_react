@@ -1,7 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AxiosError } from "axios";
 import { PointType } from "../../types";
-import { pointsAllRequest, pointCreate, pointDelete, pointEdit } from "../actions";
+import {
+  pointsAllRequest,
+  pointCreate,
+  pointDelete,
+  pointEdit,
+} from "../actions";
 
 interface PointsState {
   points: PointType[];

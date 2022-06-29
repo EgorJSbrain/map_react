@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { Navbar } from "./Navbar";
 import { HeaderWrapper, LangBlock, LogOut } from "./Header.styled";
 import { userLogOut } from "../../store/actions";
-import { Box } from "@mui/material";
 
 export const Header = () => {
   const { t, i18n } = useTranslation();

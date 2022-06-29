@@ -12,6 +12,10 @@
   margin-top: -32px !important;
 }
 
+.leaflet-popup-content {
+  min-width: 200px;
+}
+
 @media (min-width: 720px) {
   .leaflet-container {
     height: calc(100vh - 199px);
