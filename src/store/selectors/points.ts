@@ -1,3 +1,3 @@
 import { RootState } from "../store";
 
-export const getPoints = (state: RootState) => state.points
+export const getPoints = (state: RootState) => state.points;

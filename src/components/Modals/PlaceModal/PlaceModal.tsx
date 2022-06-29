@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { TextFieldForm } from "../..";
-import { useAppDispatch } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { pointCreate, pointEdit } from "../../../store/actions";
 import { PointType } from "../../../types";
 import { PlaceType } from "../../../types/place";
@@ -25,6 +25,7 @@ export const PlaceModal = ({
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [description, setDescription] = useState<string>("");
+  const { user } = useAppSelector(state => state.auth)
 
   useEffect(() => {
     if (editedPoint) {
@@ -38,11 +39,12 @@ export const PlaceModal = ({
 
   const handlePoinCreate = useCallback(async () => {
     try {
-      if (selectedPosition) {
+      if (selectedPosition && user) {
         dispatch(
           pointCreate({
             ...selectedPosition,
             description,
+            userId: user.id
           })
         );
       }
@@ -61,7 +63,7 @@ export const PlaceModal = ({
       handleClose();
       setDescription("");
     }
-  }, [selectedPosition, editedPoint, description]);
+  }, [selectedPosition, editedPoint, description, user, handleClose, dispatch]);
 
   const handleChange = useCallback((value: string) => {
     setDescription(value);

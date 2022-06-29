@@ -4,3 +4,4 @@ export { Header } from './Header';
 export { StartModal } from './Modals/StartModal';
 export { ModalDialog } from './ModalDialog';
 export { TextFieldForm } from './TextFieldForm';
+export { Card } from './Card';

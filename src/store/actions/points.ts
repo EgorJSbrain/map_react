@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { pointsApi } from "../../requestApi";
 import { PointDto, PointType } from "../../types/points";
 
-
 export const pointsAllRequest = createAsyncThunk(
   'points/getAll',
   async (_, { rejectWithValue }) => {

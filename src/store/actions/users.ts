@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { userApi } from "../../requestApi";
-import { UserType } from "../../types";
+import { UserType, UserTypeDto } from "../../types";
 
 export const usersAllRequest = createAsyncThunk(
   'users/fetchAllUsers',
@@ -23,7 +23,7 @@ export const usersAllRequest = createAsyncThunk(
 
 export const userRegister = createAsyncThunk(
   'users/addUser',
-  async (data: UserType, { rejectWithValue }) => {
+  async (data: UserTypeDto, { rejectWithValue }) => {
     try {
       const response = await userApi.register(data);
 

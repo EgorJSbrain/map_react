@@ -3,19 +3,11 @@ import { Button } from "@mui/material";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { UserModalForm } from "./UserModalForm";
-import { PlaceType } from "../../../types/place";
 import { ContentTypes } from "./StartModal";
 import { useAppDispatch } from "../../../hooks";
 import { CentredWrapper, LinkBox, LinkBoxInfo } from "./StartModal.styled";
 import { userRegister } from "../../../store/actions";
-
-export type UserFormType = {
-  firstName: string;
-  secondName: string;
-  address: PlaceType;
-  email: string;
-  password: string;
-}
+import { UserTypeDto } from "../../../types";
 
 type SignUpProps = {
   handleClose: () => void;
@@ -28,12 +20,12 @@ export const SignUp = ({
 }: SignUpProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
-  const form = useForm<UserFormType>({
+  const form = useForm<UserTypeDto>({
     mode: "onChange",
   });
 
   const onSubmit = useCallback(
-    async (data: UserFormType) => {
+    async (data: UserTypeDto) => {
         const response = await dispatch(userRegister(data));
 
         if (response.payload) {

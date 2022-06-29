@@ -12,7 +12,6 @@ import { MapEvents } from "./MapEvents";
 import { IconsMap } from "./IconsMap";
 import '../../index.css';
 import "leaflet/dist/leaflet.css";
-import { useCallback } from "react";
 
 interface MapProps {
   homePosition: PlaceType | null;
@@ -21,6 +20,7 @@ interface MapProps {
   handleSetPosition: (position: PlaceType) => void;
   handlePointDelete: (id: number) => void;
   handlePointEdit: (point: PointType) => void;
+  handleCardCreate: (point: PointType) => void;
 }
 
 export const Map = ({
@@ -30,6 +30,7 @@ export const Map = ({
   handleSetPosition,
   handlePointDelete,
   handlePointEdit,
+  handleCardCreate,
 }: MapProps) => {
   const selectedLocation: LatLngTuple = [
     Number(selectPosition?.lat),
@@ -73,6 +74,7 @@ export const Map = ({
                 point={point}
                 handlePointDelete={handlePointDelete}
                 handlePointEdit={handlePointEdit}
+                handleCardCreate={handleCardCreate}
               />
             </Marker>
           );
