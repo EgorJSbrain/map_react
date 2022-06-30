@@ -16,7 +16,7 @@ export const Header = () => {
   const { user } = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
 
-  const isApp = location.pathname.includes('app');
+  const isApp = location.pathname.includes('app')
 
   const hnadleChangeLanguage = useCallback((checked: boolean) => {
     i18n.changeLanguage(checked ? 'en' : 'ru');
