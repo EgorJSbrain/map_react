@@ -4,9 +4,9 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@mui/material';
-import styled from 'styled-components';
-import { PlaceType } from '../../types/place';
+} from "@mui/material";
+import styled from "styled-components";
+import { PlaceType } from "../../types/place";
 
 const ListWrapper = styled.div`
   position: absolute;

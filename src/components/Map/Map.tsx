@@ -1,17 +1,14 @@
-import {
-  MapContainer,
-  Marker,
-} from 'react-leaflet';
-import { LatLngTuple } from 'leaflet';
-import { PlaceType } from '../../types/place';
-import { MapLayer } from '../MapLayer';
-import { POSITION_CENTER } from '../../constants';
-import { PointType } from '../../types';
-import { MapEvents } from './MapEvents';
-import { IconsMap } from './IconsMap';
-import { MarkerPopup } from './MarkerPopup';
-import '../../index.css';
-import 'leaflet/dist/leaflet.css';
+import { MapContainer, Marker } from "react-leaflet";
+import { LatLngTuple } from "leaflet";
+import { PlaceType } from "../../types/place";
+import { MapLayer } from "../MapLayer";
+import { POSITION_CENTER } from "../../constants";
+import { PointType } from "../../types";
+import { MapEvents } from "./MapEvents";
+import { IconsMap } from "./IconsMap";
+import { MarkerPopup } from "./MarkerPopup";
+import "../../index.css";
+import "leaflet/dist/leaflet.css";
 
 interface MapProps {
   homePosition: PlaceType | null;

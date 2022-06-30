@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { Card } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { cardsAllRequest } from '../../store/actions';
-import { AppWrapper, CardsWrapper } from './styled';
+import { useEffect } from "react";
+import { Card } from "../../components";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { cardsAllRequest } from "../../store/actions";
+import { AppWrapper, CardsWrapper } from "./styled";
 
 export const CardsPage = () => {
   const dispatch = useAppDispatch();
-  const { cards } = useAppSelector(state => state.cards);
+  const { cards } = useAppSelector((state) => state.cards);
 
   useEffect(() => {
     dispatch(cardsAllRequest());
@@ -15,7 +15,9 @@ export const CardsPage = () => {
   return (
     <AppWrapper>
       <CardsWrapper>
-        {cards.map(card => <Card key={card.id} card={card}/>)}
+        {cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
       </CardsWrapper>
     </AppWrapper>
   );

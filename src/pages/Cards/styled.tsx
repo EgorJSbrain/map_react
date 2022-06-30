@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AppWrapper = styled.div`
   width: 100%;
@@ -14,5 +14,3 @@ export const CardsWrapper = styled.div`
   gap: 16px;
   overflow-y: scroll;
 `;
-
-

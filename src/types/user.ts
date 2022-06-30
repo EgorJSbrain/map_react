@@ -1,4 +1,4 @@
-import { PlaceType } from './place';
+import { PlaceType } from "./place";
 
 export type UserTypeDto = {
   firstName: string;
@@ -6,7 +6,7 @@ export type UserTypeDto = {
   address: PlaceType;
   email: string;
   password: string;
-}
+};
 
 export type UserType = {
   id: number;

@@ -1,12 +1,19 @@
-import { Typography } from '@mui/material';
-import { CardType } from '../../types';
-import { CardDescription, CardItem, CardStatus, ImgBox, Info, PhotoIcon } from './styled';
+import { Typography } from "@mui/material";
+import { CardType } from "../../types";
+import {
+  CardDescription,
+  CardItem,
+  CardStatus,
+  ImgBox,
+  Info,
+  PhotoIcon,
+} from "./styled";
 
 interface CardProps {
   card: CardType;
 }
 
-export const Card = ({card}: CardProps) => {
+export const Card = ({ card }: CardProps) => {
   return (
     <CardItem>
       <ImgBox>
@@ -14,11 +21,9 @@ export const Card = ({card}: CardProps) => {
       </ImgBox>
 
       <Info>
-        <Typography>
-          {card.point.display_name}
-        </Typography>
+        <Typography>{card.point.display_name}</Typography>
 
-        <CardDescription placeholder="Set description"/>
+        <CardDescription placeholder="Set description" />
       </Info>
 
       {card.status && <CardStatus>{card.status}</CardStatus>}

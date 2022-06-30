@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderWrapper = styled.header<{ isApp: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${(props) => (props.isApp ? 'transparent' : '#0b1352')};
+  background-color: ${(props) => (props.isApp ? "transparent" : "#0b1352")};
   padding: 24px;
-  position: ${(props) => (props.isApp ? 'absolute' : 'sticky')};;
+  position: ${(props) => (props.isApp ? "absolute" : "sticky")};
   top: 0;
   left: 0;
   right: 0;

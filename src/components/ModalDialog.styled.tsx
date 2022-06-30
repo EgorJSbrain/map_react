@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import CloseIcon from '@mui/icons-material/Close';
-import { Box } from '@mui/material';
+import styled from "styled-components";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
 
 export const Close = styled(CloseIcon)`
   position: absolute;

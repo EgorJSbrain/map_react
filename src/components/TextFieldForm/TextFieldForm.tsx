@@ -1,5 +1,5 @@
-import { useTranslation } from 'react-i18next';
-import { InputField } from './styled';
+import { useTranslation } from "react-i18next";
+import { InputField } from "./styled";
 
 interface TextFieldFormPorps {
   label: string;
@@ -8,7 +8,12 @@ interface TextFieldFormPorps {
   onChange: (e: string) => void;
 }
 
-export const TextFieldForm = ({ label, value, isRequired = true, onChange }: TextFieldFormPorps) => {
+export const TextFieldForm = ({
+  label,
+  value,
+  isRequired = true,
+  onChange,
+}: TextFieldFormPorps) => {
   const { t } = useTranslation();
 
   return (

@@ -1,1 +1,1 @@
-export { PlaceModal } from './PlaceModal';
+export { PlaceModal } from "./PlaceModal";

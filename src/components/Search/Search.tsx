@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { PlaceType } from '../../types/place';
-import { useCheckScreenSize } from '../../hooks';
-import { debounce } from '../../utils';
-import { placeApi } from '../../requestApi';
-import { Input, SearchWrapper } from './Search.styled';
-import { SearchList } from './SearchList';
+import { useCallback, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { PlaceType } from "../../types/place";
+import { useCheckScreenSize } from "../../hooks";
+import { debounce } from "../../utils";
+import { placeApi } from "../../requestApi";
+import { Input, SearchWrapper } from "./Search.styled";
+import { SearchList } from "./SearchList";
 
 type SearchProps = {
-  handleSetPosition: (value: PlaceType) => void
-}
+  handleSetPosition: (value: PlaceType) => void;
+};
 
 export const Search = ({ handleSetPosition }: SearchProps) => {
   const { t } = useTranslation();
@@ -34,16 +34,19 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
 
   const debouncedChange = debounce(searchRequest, 500);
 
-  const onClick = useCallback((item: PlaceType) => {
-    setListVisible(false);
-    handleSetPosition(item);
-  }, [handleSetPosition]);
+  const onClick = useCallback(
+    (item: PlaceType) => {
+      setListVisible(false);
+      handleSetPosition(item);
+    },
+    [handleSetPosition]
+  );
 
   return (
     <SearchWrapper>
       <Input
-        variant={isMobile ? 'standard' : 'outlined'}
-        placeholder={t('address')}
+        variant={isMobile ? "standard" : "outlined"}
+        placeholder={t("address")}
         onChange={(event) => {
           debouncedChange(event.target.value);
         }}

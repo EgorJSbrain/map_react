@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import styled from "styled-components";
+import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 
 export const AppWrapper = styled.div`
   width: 100%;

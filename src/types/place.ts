@@ -1,5 +1,5 @@
 export type AddressType = {
-  'ISO3166-2-lvl4': string;
+  "ISO3166-2-lvl4": string;
   city: string;
   country: string;
   country_code: string;
@@ -10,8 +10,8 @@ export type AddressType = {
   village?: string;
   leisure?: string;
   town?: string;
-  'ISO3166-2-lvl6'?: string;
-}
+  "ISO3166-2-lvl6"?: string;
+};
 
 export type PlaceType = {
   address: AddressType;
@@ -27,4 +27,4 @@ export type PlaceType = {
   importance?: number;
   class?: string;
   type?: string;
-}
+};

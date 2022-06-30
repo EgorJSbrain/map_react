@@ -1,6 +1,6 @@
-import { Box, Card, Input } from '@mui/material';
-import styled from 'styled-components';
-import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
+import { Box, Card, Input } from "@mui/material";
+import styled from "styled-components";
+import AddAPhotoOutlinedIcon from "@mui/icons-material/AddAPhotoOutlined";
 
 export const CardItem = styled(Card)`
   width: 600px;
@@ -32,7 +32,7 @@ export const ImgBox = styled(Box)`
       color: #a09e9e;
     }
 
-    border-color: #a3b3c3
+    border-color: #a3b3c3;
   }
 `;
 
@@ -61,7 +61,7 @@ export const CardDescription = styled(Input)`
   margin-top: 12px;
 
   :before {
-    border: none !important
+    border: none !important;
   }
 
   :after {

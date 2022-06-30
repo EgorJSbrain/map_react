@@ -1,16 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { pointsApi } from '../../requestApi';
-import { PointDto, PointType } from '../../types/points';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { pointsApi } from "../../requestApi";
+import { PointDto, PointType } from "../../types/points";
 
 export const pointsAllRequest = createAsyncThunk(
-  'points/getAll',
+  "points/getAll",
   async (_, { rejectWithValue }) => {
-
     try {
       const response = await pointsApi.getAll();
 
       if (!response) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return response;
@@ -23,14 +22,13 @@ export const pointsAllRequest = createAsyncThunk(
 );
 
 export const pointCreate = createAsyncThunk(
-  'points/create',
+  "points/create",
   async (data: PointDto, { rejectWithValue }) => {
-
     try {
       const response = await pointsApi.create(data);
 
       if (!response) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return response;
@@ -43,14 +41,13 @@ export const pointCreate = createAsyncThunk(
 );
 
 export const pointEdit = createAsyncThunk(
-  'points/edit',
+  "points/edit",
   async (data: PointType, { rejectWithValue }) => {
-
     try {
       const response = await pointsApi.edit(data);
 
       if (!response) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return response;
@@ -63,14 +60,13 @@ export const pointEdit = createAsyncThunk(
 );
 
 export const pointDelete = createAsyncThunk(
-  'points/delete',
+  "points/delete",
   async (id: number, { rejectWithValue }) => {
-
     try {
       const response = await pointsApi.delete(id);
 
       if (!response) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return id;

@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HomePageWrapper = styled.div`
-  background: url('./home.jpeg');
+  background: url("./home.jpeg");
   width: 100%;
   background-color: #f1fef9;
   height: 100vh;
@@ -28,10 +28,14 @@ export const Sircle = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgb(187 187 185) 56%, rgba(103,34,48,0.16712622549019607) 94%);
+  background: radial-gradient(
+    circle,
+    rgb(187 187 185) 56%,
+    rgba(103, 34, 48, 0.16712622549019607) 94%
+  );
   position: absolute;
   z-index: 1;
-  opacity: .4;
+  opacity: 0.4;
   right: -16px;
   top: 98px;
 `;
@@ -70,15 +74,25 @@ export const StartButton = styled.div`
   :hover {
     cursor: pointer;
     animation-name: shake;
-    animation-duration: .3s;
+    animation-duration: 0.3s;
     animation-iteration-count: infinite;
   }
 
   @keyframes shake {
-    0% { transform: translate(0, 0) rotate(0deg); }
-    25% { transform: translate(5px, 5px) rotate(5deg); }
-    50% { transform: translate(0, 0) rotate(0eg); }
-    75% { transform: translate(-5px, 5px) rotate(-5deg); }
-    100% { transform: translate(0, 0) rotate(0deg); }
+    0% {
+      transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+      transform: translate(5px, 5px) rotate(5deg);
+    }
+    50% {
+      transform: translate(0, 0) rotate(0eg);
+    }
+    75% {
+      transform: translate(-5px, 5px) rotate(-5deg);
+    }
+    100% {
+      transform: translate(0, 0) rotate(0deg);
+    }
   }
 `;

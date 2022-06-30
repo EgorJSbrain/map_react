@@ -1,5 +1,5 @@
-import { Box, TextField } from '@mui/material';
-import styled from 'styled-components';
+import { Box, TextField } from "@mui/material";
+import styled from "styled-components";
 
 export const CentredWrapper = styled(Box)`
   display: flex;
@@ -26,7 +26,7 @@ export const ListWrapper = styled.div`
   border-radius: 4px;
 
   &.MuiList-root {
-    padding: 0px !important
+    padding: 0px !important;
   }
 `;
 

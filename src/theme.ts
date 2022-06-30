@@ -1,30 +1,30 @@
-import { createTheme } from '@mui/material/styles';
-import '@fontsource/ubuntu';
+import { createTheme } from "@mui/material/styles";
+import "@fontsource/ubuntu";
 
 const theme = createTheme({
   typography: {
-    fontFamily: ['Ubuntu'].join(','),
+    fontFamily: ["Ubuntu"].join(","),
     allVariants: {
-      color: '#1d1a39',
-      fontFamily: 'Ubuntu, sans-serif',
+      color: "#1d1a39",
+      fontFamily: "Ubuntu, sans-serif",
     },
     h4: {
-      fontSize: '32px',
-      textTransform: 'uppercase',
-      fontWeight: '700',
-      letterSpacing: '-0.6px',
-      lineHeight: '30px',
+      fontSize: "32px",
+      textTransform: "uppercase",
+      fontWeight: "700",
+      letterSpacing: "-0.6px",
+      lineHeight: "30px",
     },
     h5: {
-      fontSize: '30px',
-      fontWeight: 'bold',
+      fontSize: "30px",
+      fontWeight: "bold",
     },
     h6: {
-      fontSize: '28px',
-      fontWeight: 'bold',
+      fontSize: "28px",
+      fontWeight: "bold",
     },
     body1: {
-      fontSize: '14px',
+      fontSize: "14px",
     },
     caption: {
       fontWeight: 200,
@@ -34,22 +34,22 @@ const theme = createTheme({
     MuiAppBar: {
       styleOverrides: {
         root: {
-          background: '#00223B',
+          background: "#00223B",
         },
       },
     },
     MuiButton: {
       styleOverrides: {
         root: {
-          letterSpacing: '1.2px',
-          backgroundColor: '#ffe108',
-          color: '#1d1a39',
-          padding: '0px 24px',
-          height: '40px',
-          borderRadius: '20px',
+          letterSpacing: "1.2px",
+          backgroundColor: "#ffe108",
+          color: "#1d1a39",
+          padding: "0px 24px",
+          height: "40px",
+          borderRadius: "20px",
           fontWeight: 700,
-          '&:hover': {
-            backgroundColor: '#ffe108',
+          "&:hover": {
+            backgroundColor: "#ffe108",
           },
         },
       },
@@ -57,9 +57,9 @@ const theme = createTheme({
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: '#A3AFB8',
-          '&.Mui-checked': {
-            color: '#A3AFB8',
+          color: "#A3AFB8",
+          "&.Mui-checked": {
+            color: "#A3AFB8",
           },
         },
       },
@@ -67,19 +67,19 @@ const theme = createTheme({
   },
   palette: {
     common: {
-      black: '#000',
-      white: '#fff',
+      black: "#000",
+      white: "#fff",
     },
     background: {
-      paper: '#ECECEC',
-      default: 'white',
+      paper: "#ECECEC",
+      default: "white",
     },
     primary: {
-      main: '#00223B',
-      light: '#80ACD4',
+      main: "#00223B",
+      light: "#80ACD4",
     },
     secondary: {
-      main: '#ECECEC',
+      main: "#ECECEC",
     },
   },
 });

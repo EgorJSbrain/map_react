@@ -1,2 +1,2 @@
-export { PlaceModal } from './PlaceModal';
-export { StartModal } from './StartModal';
+export { PlaceModal } from "./PlaceModal";
+export { StartModal } from "./StartModal";

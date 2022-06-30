@@ -1,1 +1,1 @@
-export { getPoints } from './points';
+export { getPoints } from "./points";

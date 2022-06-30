@@ -1,16 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { userApi } from '../../requestApi';
-import { UserTypeDto } from '../../types';
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { userApi } from "../../requestApi";
+import { UserTypeDto } from "../../types";
 
 export const usersAllRequest = createAsyncThunk(
-  'users/fetchAllUsers',
+  "users/fetchAllUsers",
   async (_, { rejectWithValue }) => {
-
     try {
       const response = await userApi.getAll();
 
       if (!response) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return response;
@@ -23,13 +22,13 @@ export const usersAllRequest = createAsyncThunk(
 );
 
 export const userRegister = createAsyncThunk(
-  'users/addUser',
+  "users/addUser",
   async (data: UserTypeDto, { rejectWithValue }) => {
     try {
       const response = await userApi.register(data);
 
       if (!response.ok) {
-        throw new Error('Server error');
+        throw new Error("Server error");
       }
 
       return response.data;

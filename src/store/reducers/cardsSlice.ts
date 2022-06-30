@@ -1,13 +1,13 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AxiosError } from 'axios';
-import { CardType } from '../../types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AxiosError } from "axios";
+import { CardType } from "../../types";
 import {
   cardCreate,
   cardsAllRequest,
   // cardCreate,
   // cardDelete,
   // cardEdit,
-} from '../actions';
+} from "../actions";
 
 interface CardsState {
   cards: CardType[];
@@ -18,29 +18,35 @@ interface CardsState {
 const initialState: CardsState = {
   cards: [],
   isLoading: false,
-  error: '',
+  error: "",
 };
 
 const cardsSlice = createSlice({
-  name: 'cards',
+  name: "cards",
   initialState,
   reducers: {},
   extraReducers: {
-    [cardsAllRequest.fulfilled.type]: (state, action: PayloadAction<CardType[]>) => {
+    [cardsAllRequest.fulfilled.type]: (
+      state,
+      action: PayloadAction<CardType[]>
+    ) => {
       state.isLoading = false;
-      state.error = '';
+      state.error = "";
       state.cards = action.payload;
     },
     [cardsAllRequest.pending.type]: (state) => {
       state.isLoading = true;
     },
-    [cardsAllRequest.rejected.type]: (state, action: PayloadAction<AxiosError>) => {
+    [cardsAllRequest.rejected.type]: (
+      state,
+      action: PayloadAction<AxiosError>
+    ) => {
       state.isLoading = false;
       state.error = action.payload.message;
     },
     [cardCreate.fulfilled.type]: (state, action: PayloadAction<CardType>) => {
       state.isLoading = false;
-      state.error = '';
+      state.error = "";
       state.cards = [...state.cards, action.payload];
     },
     [cardCreate.pending.type]: (state) => {
@@ -74,7 +80,7 @@ const cardsSlice = createSlice({
     //   state.isLoading = false;
     //   state.error = action.payload.message;
     // },
-  }
+  },
 });
 
 export default cardsSlice.reducer;

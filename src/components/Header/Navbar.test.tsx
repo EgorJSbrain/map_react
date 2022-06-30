@@ -1,11 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import userEvent from '@testing-library/user-event';
-import { Provider } from 'react-redux';
-import * as redux from 'react-redux';
-import { App } from '../../App';
-import { store } from '../../store/store';
-import { Navbar } from './Navbar';
+import { render, screen } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
+import userEvent from "@testing-library/user-event";
+import { Provider } from "react-redux";
+import * as redux from "react-redux";
+import { App } from "../../App";
+import { store } from "../../store/store";
+import { Navbar } from "./Navbar";
 
 const routerRender = () => {
   render(
@@ -17,7 +17,7 @@ const routerRender = () => {
   );
 };
 
-jest.mock('react-i18next', () => ({
+jest.mock("react-i18next", () => ({
   useTranslation: () => {
     return {
       t: (str: string) => str,
@@ -25,25 +25,25 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
-jest.mock('react-redux', () => {
-  const ActualReactRedux = jest.requireActual('react-redux');
+jest.mock("react-redux", () => {
+  const ActualReactRedux = jest.requireActual("react-redux");
   return {
-      ...ActualReactRedux,
-      useSelector: jest.fn().mockImplementation(() => {
-          return {};
-      }),
+    ...ActualReactRedux,
+    useSelector: jest.fn().mockImplementation(() => {
+      return {};
+    }),
   };
 });
 
-describe('HEADER TEST', () => {
+describe("HEADER TEST", () => {
   let spyOnUseSelector;
 
   beforeEach(() => {
-    spyOnUseSelector = jest.spyOn(redux, 'useSelector');
+    spyOnUseSelector = jest.spyOn(redux, "useSelector");
     spyOnUseSelector.mockReturnValue({ id: 1 });
   });
 
-  test('render links', () => {
+  test("render links", () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -51,19 +51,19 @@ describe('HEADER TEST', () => {
     );
   });
 
-  test('home link', () => {
+  test("home link", () => {
     routerRender();
 
-    const homeLink = screen.getByTestId('home-link');
+    const homeLink = screen.getByTestId("home-link");
     userEvent.click(homeLink);
     // eslint-disable-next-line
     expect(screen.getByTestId('home-page')).toBeInTheDocument;
   });
 
-  test('search link', () => {
+  test("search link", () => {
     routerRender();
 
-    const searchLink = screen.getByTestId('search-link');
+    const searchLink = screen.getByTestId("search-link");
     userEvent.click(searchLink);
     // eslint-disable-next-line
     expect(screen.getByTestId('search-page')).toBeInTheDocument;

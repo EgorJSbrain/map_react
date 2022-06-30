@@ -1,1 +1,1 @@
-export { StartModal } from './StartModal';
+export { StartModal } from "./StartModal";

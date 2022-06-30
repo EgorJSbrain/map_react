@@ -1,8 +1,8 @@
-import { PointType } from './points';
+import { PointType } from "./points";
 
 export enum CardStatuses {
-  new = 'NEW',
-  updated = 'UPDATED',
+  new = "NEW",
+  updated = "UPDATED",
 }
 
 export type CardDto = {
