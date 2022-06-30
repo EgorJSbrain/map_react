@@ -1,6 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { cardsApi } from "../../requestApi";
-import { CardDto } from "../../types";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { cardsApi } from '../../requestApi';
+import { CardDto } from '../../types';
 
 export const cardsAllRequest = createAsyncThunk(
   'cards/getAll',
@@ -10,13 +10,14 @@ export const cardsAllRequest = createAsyncThunk(
       const response = await cardsApi.getAll();
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );
@@ -29,13 +30,14 @@ export const cardCreate = createAsyncThunk(
       const response = await cardsApi.create(data);
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );

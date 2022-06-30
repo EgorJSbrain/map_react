@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import CloseIcon from '@mui/icons-material/Close';
-import { Box } from "@mui/material";
+import { Box } from '@mui/material';
 
 export const Close = styled(CloseIcon)`
   position: absolute;
@@ -10,7 +10,7 @@ export const Close = styled(CloseIcon)`
   :hover {
     cursor: pointer;
   }
-`
+`;
 
 export const ContentWrapper = styled(Box)`
   width: 480px;

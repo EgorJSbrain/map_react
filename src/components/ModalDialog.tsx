@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { Dialog, DialogTitle } from "@mui/material";
-import { Close, ContentWrapper } from "./ModalDialog.styled";
+import { ReactNode } from 'react';
+import { Dialog, DialogTitle } from '@mui/material';
+import { Close, ContentWrapper } from './ModalDialog.styled';
 
 type ModalDialogProps = {
   children: ReactNode;

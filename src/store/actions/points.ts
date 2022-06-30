@@ -1,6 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { pointsApi } from "../../requestApi";
-import { PointDto, PointType } from "../../types/points";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { pointsApi } from '../../requestApi';
+import { PointDto, PointType } from '../../types/points';
 
 export const pointsAllRequest = createAsyncThunk(
   'points/getAll',
@@ -10,13 +10,14 @@ export const pointsAllRequest = createAsyncThunk(
       const response = await pointsApi.getAll();
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );
@@ -29,13 +30,14 @@ export const pointCreate = createAsyncThunk(
       const response = await pointsApi.create(data);
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );
@@ -48,13 +50,14 @@ export const pointEdit = createAsyncThunk(
       const response = await pointsApi.edit(data);
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );
@@ -67,13 +70,14 @@ export const pointDelete = createAsyncThunk(
       const response = await pointsApi.delete(id);
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return id;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );

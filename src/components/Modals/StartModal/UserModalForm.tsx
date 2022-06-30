@@ -1,13 +1,13 @@
 import {
   Autocomplete,
-} from "@mui/material";
-import { useCallback, useState } from "react";
-import { Controller, useFormContext, useFormState } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { placeApi } from "../../../requestApi";
-import { PlaceType } from "../../../types/place";
-import { debounce } from "../../../utils";
-import { FormWrapper, TextFieldForm } from "./StartModal.styled";
+} from '@mui/material';
+import { useCallback, useState } from 'react';
+import { Controller, useFormContext, useFormState } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { placeApi } from '../../../requestApi';
+import { PlaceType } from '../../../types/place';
+import { debounce } from '../../../utils';
+import { FormWrapper, TextFieldForm } from './StartModal.styled';
 
 export const UserModalForm = () => {
   const { t } = useTranslation();
@@ -24,6 +24,7 @@ export const UserModalForm = () => {
           setListPlace(data);
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     },
@@ -33,8 +34,7 @@ export const UserModalForm = () => {
   const debouncedChange = debounce(searchRequest, 500);
 
   const handleChange = (newValue: PlaceType | null) => {
-    // @ts-ignore
-    setValue("address", newValue, { shouldDirty: true });
+    setValue('address', newValue, { shouldDirty: true });
   };
 
   return (
@@ -43,10 +43,10 @@ export const UserModalForm = () => {
         control={control}
         rules={{ required: true }}
         name="firstName"
-        defaultValue={""}
+        defaultValue={''}
         render={({ field }) => (
           <TextFieldForm
-            label={t("modals.userModal.firstName")}
+            label={t('modals.userModal.firstName')}
             variant="standard"
             required
             error={!!dirtyFields.firstName && !field.value?.length}
@@ -60,10 +60,10 @@ export const UserModalForm = () => {
         control={control}
         rules={{ required: true }}
         name="secondName"
-        defaultValue={""}
+        defaultValue={''}
         render={({ field }) => (
           <TextFieldForm
-            label={t("modals.userModal.secondName")}
+            label={t('modals.userModal.secondName')}
             variant="standard"
             required
             error={!!dirtyFields.secondName && !field.value?.length}
@@ -82,8 +82,8 @@ export const UserModalForm = () => {
             <Autocomplete
               options={listPlace}
               isOptionEqualToValue={(option, value) => option !== value}
-              getOptionLabel={(option) => option.display_name || ""}
-              value={field.value || ""}
+              getOptionLabel={(option) => option.display_name || ''}
+              value={field.value || ''}
               onChange={(_, value: PlaceType | null) => {
                 field.onChange();
                 handleChange(value);
@@ -92,7 +92,7 @@ export const UserModalForm = () => {
                 <TextFieldForm
                   {...params}
                   autoComplete="off"
-                  label={t("modals.userModal.country")}
+                  label={t('modals.userModal.country')}
                   variant="standard"
                   required
                   error={!!dirtyFields.address && !field.value}
@@ -112,15 +112,15 @@ export const UserModalForm = () => {
           required: true,
           pattern: {
             value: /^\S+@\S+\.\S+$/,
-            message: t("validationEmailMessage"),
+            message: t('validationEmailMessage'),
           },
         }}
         name="email"
-        defaultValue={""}
-        render={({ field, fieldState, formState }) => (
+        defaultValue={''}
+        render={({ field, formState }) => (
           <TextFieldForm
             helperText={formState.errors.email?.message}
-            label={t("modals.userModal.email")}
+            label={t('modals.userModal.email')}
             variant="standard"
             required
             error={
@@ -137,10 +137,10 @@ export const UserModalForm = () => {
         control={control}
         rules={{ required: true }}
         name="password"
-        defaultValue={""}
+        defaultValue={''}
         render={({ field }) => (
           <TextFieldForm
-            label={t("modals.userModal.password")}
+            label={t('modals.userModal.password')}
             variant="standard"
             required
             error={!!dirtyFields.password && !field.value?.length}

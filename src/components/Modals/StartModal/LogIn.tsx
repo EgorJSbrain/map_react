@@ -1,12 +1,12 @@
-import { Button } from "@mui/material";
-import { useCallback, useEffect } from "react";
-import { Controller, useForm, useFormState } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { userAuth } from "../../../store/actions";
-import { ContentTypes } from "./StartModal";
-import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from "./StartModal.styled";
+import { Button } from '@mui/material';
+import { useCallback, useEffect } from 'react';
+import { Controller, useForm, useFormState } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { userAuth } from '../../../store/actions';
+import { ContentTypes } from './StartModal';
+import { CentredWrapper, LinkBox, LinkBoxInfo, TextFieldForm } from './StartModal.styled';
 
 type UserFormType = {
   password: string;
@@ -23,7 +23,7 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
     formState: { isValid },
     handleSubmit,
   } = useForm<UserFormType>({
-    mode: "onChange",
+    mode: 'onChange',
   });
   const navigation = useNavigate();
   const dispatch = useAppDispatch();
@@ -43,10 +43,11 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
           email: data.email,
         }));
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.log(e);
       }
     },
-    [userAuth]
+    [dispatch]
   );
 
   return (
@@ -55,10 +56,10 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
         control={control}
         rules={{ required: true }}
         name="email"
-        defaultValue={""}
+        defaultValue={''}
         render={({ field }) => (
           <TextFieldForm
-            label={t("modals.userModal.email")}
+            label={t('modals.userModal.email')}
             variant="standard"
             required
             error={!!dirtyFields.email && !field.value?.length}
@@ -72,10 +73,10 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
         control={control}
         rules={{ required: true }}
         name="password"
-        defaultValue={""}
+        defaultValue={''}
         render={({ field }) => (
           <TextFieldForm
-            label={t("modals.userModal.password")}
+            label={t('modals.userModal.password')}
             variant="standard"
             required
             error={!!dirtyFields.password && !field.value?.length}
@@ -86,13 +87,13 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
       />
       <CentredWrapper>
         <Button sx={{mb: 2}} disabled={!isValid} type="submit">
-          {t("logInBtn")}
+          {t('logInBtn')}
         </Button>
       </CentredWrapper>
 
       <CentredWrapper>
-        <LinkBoxInfo>{t("notExistedAccaunt")}</LinkBoxInfo>
-        <LinkBox onClick={() => handleSetType(ContentTypes.signUp)}>{t("signUpBtn")}</LinkBox>
+        <LinkBoxInfo>{t('notExistedAccaunt')}</LinkBoxInfo>
+        <LinkBox onClick={() => handleSetType(ContentTypes.signUp)}>{t('signUpBtn')}</LinkBox>
       </CentredWrapper>
     </form>
   );

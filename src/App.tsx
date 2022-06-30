@@ -1,6 +1,6 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { CardsPage, HomePage, Layout, SearchPage } from "./pages";
+import { Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
+import { CardsPage, HomePage, Layout, SearchPage } from './pages';
 
 export const App = () => (
   <>

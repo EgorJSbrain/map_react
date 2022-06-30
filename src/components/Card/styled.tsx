@@ -1,5 +1,5 @@
-import { Box, Card, Input, TextField } from "@mui/material";
-import styled from "styled-components";
+import { Box, Card, Input } from '@mui/material';
+import styled from 'styled-components';
 import AddAPhotoOutlinedIcon from '@mui/icons-material/AddAPhotoOutlined';
 
 export const CardItem = styled(Card)`
@@ -7,13 +7,13 @@ export const CardItem = styled(Card)`
   padding: 24px;
   display: flex;
   position: relative;
-`
+`;
 
 export const PhotoIcon = styled(AddAPhotoOutlinedIcon)`
   width: 40px !important;
   height: 40px !important;
   color: #c1bebe;
-`
+`;
 
 export const ImgBox = styled(Box)`
   width: 120px;
@@ -34,13 +34,13 @@ export const ImgBox = styled(Box)`
 
     border-color: #a3b3c3
   }
-`
+`;
 
 export const Info = styled(Box)`
   width: 352px;
   display: flex;
   flex-direction: column;
-`
+`;
 
 export const CardStatus = styled.div`
   background-color: #2cf70040;
@@ -67,4 +67,4 @@ export const CardDescription = styled(Input)`
   :after {
     border: none !important;
   }
-`
+`;

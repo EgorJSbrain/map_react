@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { UserType } from "../../types";
-import { userAuth, userLogOut } from "../actions";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import { userAuth, userLogOut } from '../actions';
+import { UserType } from '../../types';
 
 interface AuthState {
   user: UserType | null;
@@ -13,7 +13,7 @@ const initialState: AuthState = {
   user: null,
   isLoading: false,
   error: '',
-}
+};
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -36,7 +36,7 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload.message;
     },
-    [userLogOut.fulfilled.type]: (state, action: PayloadAction<UserType>) => {
+    [userLogOut.fulfilled.type]: (state) => {
       state.isLoading = false;
       state.error = '';
       state.user = null;
@@ -49,7 +49,7 @@ export const authSlice = createSlice({
       state.error = action.payload.message;
     },
   }
-})
+});
 
 export const { userSet } = authSlice.actions;
 

@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
-import { InputField } from "./styled";
+import { useTranslation } from 'react-i18next';
+import { InputField } from './styled';
 
 interface TextFieldFormPorps {
   label: string;

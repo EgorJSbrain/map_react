@@ -1,13 +1,13 @@
-import { useCallback } from "react";
-import { Button } from "@mui/material";
-import { FormProvider, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import { UserModalForm } from "./UserModalForm";
-import { ContentTypes } from "./StartModal";
-import { useAppDispatch } from "../../../hooks";
-import { CentredWrapper, LinkBox, LinkBoxInfo } from "./StartModal.styled";
-import { userRegister } from "../../../store/actions";
-import { UserTypeDto } from "../../../types";
+import { useCallback } from 'react';
+import { Button } from '@mui/material';
+import { FormProvider, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../../hooks';
+import { userRegister } from '../../../store/actions';
+import { UserTypeDto } from '../../../types';
+import { UserModalForm } from './UserModalForm';
+import { ContentTypes } from './StartModal';
+import { CentredWrapper, LinkBox, LinkBoxInfo } from './StartModal.styled';
 
 type SignUpProps = {
   handleClose: () => void;
@@ -21,7 +21,7 @@ export const SignUp = ({
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
   const form = useForm<UserTypeDto>({
-    mode: "onChange",
+    mode: 'onChange',
   });
 
   const onSubmit = useCallback(
@@ -42,14 +42,14 @@ export const SignUp = ({
 
         <CentredWrapper>
           <Button sx={{ mb: 2 }} disabled={!form.formState.isValid} type="submit">
-            {t("signUpBtn")}
+            {t('signUpBtn')}
           </Button>
         </CentredWrapper>
 
         <CentredWrapper>
-          <LinkBoxInfo>{t("existedAccaunt")}</LinkBoxInfo>
+          <LinkBoxInfo>{t('existedAccaunt')}</LinkBoxInfo>
           <LinkBox onClick={() => handleSetType(ContentTypes.logIn)}>
-            {t("logInBtn")}
+            {t('logInBtn')}
           </LinkBox>
         </CentredWrapper>
       </form>

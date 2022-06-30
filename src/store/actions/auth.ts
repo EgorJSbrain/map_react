@@ -1,7 +1,7 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { authApi } from "../../requestApi";
-import { authUserData, UserType } from "../../types";
-import { usersAllRequest } from "./users";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { authApi } from '../../requestApi';
+import { authUserData, UserType } from '../../types';
+import { usersAllRequest } from './users';
 
 export const userAuth = createAsyncThunk(
   'auth/logIn',
@@ -23,18 +23,19 @@ export const userAuth = createAsyncThunk(
             localStorage.setItem('user', JSON.stringify(currentUser));
           }
         } else {
-          throw new Error('Server error')
+          throw new Error('Server error');
         }
       }
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       return response;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );
@@ -47,14 +48,15 @@ export const userLogOut = createAsyncThunk(
       const response = await authApi.logOut();
 
       if (!response) {
-        throw new Error('Server error')
+        throw new Error('Server error');
       }
 
       localStorage.removeItem('user');
       return response.data;
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
-      return rejectWithValue(e)
+      return rejectWithValue(e);
     }
   }
 );

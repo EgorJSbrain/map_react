@@ -1,13 +1,13 @@
-import { Button } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { TextFieldForm } from "../..";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { pointCreate, pointEdit } from "../../../store/actions";
-import { PointType } from "../../../types";
-import { PlaceType } from "../../../types/place";
-import { ModalDialog } from "../../ModalDialog";
-import { CentredWrapper, PlaceName } from "./styled";
+import { Button } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { TextFieldForm } from '../..';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { pointCreate, pointEdit } from '../../../store/actions';
+import { PointType } from '../../../types';
+import { PlaceType } from '../../../types/place';
+import { ModalDialog } from '../../ModalDialog';
+import { CentredWrapper, PlaceName } from './styled';
 
 interface PlaceModalProps {
   isOpen: boolean;
@@ -24,8 +24,8 @@ export const PlaceModal = ({
 }: PlaceModalProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const [description, setDescription] = useState<string>("");
-  const { user } = useAppSelector(state => state.auth)
+  const [description, setDescription] = useState<string>('');
+  const { user } = useAppSelector(state => state.auth);
 
   useEffect(() => {
     if (editedPoint) {
@@ -33,7 +33,7 @@ export const PlaceModal = ({
     }
 
     if (selectedPosition) {
-      setDescription("");
+      setDescription('');
     }
   }, [editedPoint, selectedPosition]);
 
@@ -58,10 +58,11 @@ export const PlaceModal = ({
         );
       }
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log(err);
     } finally {
       handleClose();
-      setDescription("");
+      setDescription('');
     }
   }, [selectedPosition, editedPoint, description, user, handleClose, dispatch]);
 
@@ -71,7 +72,7 @@ export const PlaceModal = ({
 
   return (
     <ModalDialog
-      title={t(editedPoint ? "modals.placeModal.editTitle" : "modals.placeModal.createTitle")}
+      title={t(editedPoint ? 'modals.placeModal.editTitle' : 'modals.placeModal.createTitle')}
       onClose={handleClose}
       open={isOpen}
     >
@@ -83,13 +84,13 @@ export const PlaceModal = ({
 
       <TextFieldForm
         value={description}
-        label={t("description")}
+        label={t('description')}
         isRequired={false}
         onChange={handleChange}
       />
 
       <CentredWrapper>
-        <Button onClick={handlePoinCreate}>{t(editedPoint ? "edit" : "create")}</Button>
+        <Button onClick={handlePoinCreate}>{t(editedPoint ? 'edit' : 'create')}</Button>
       </CentredWrapper>
     </ModalDialog>
   );

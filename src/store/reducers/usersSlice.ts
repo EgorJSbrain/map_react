@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { UserType } from "../../types";
-import { usersAllRequest } from "../actions/users";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import { UserType } from '../../types';
+import { usersAllRequest } from '../actions/users';
 
 interface UsersState {
   users: UserType[];
@@ -13,7 +13,7 @@ const initialState: UsersState = {
   users: [],
   isLoading: false,
   error: '',
-}
+};
 
 const usersSlice = createSlice({
   name: 'users',
@@ -33,6 +33,6 @@ const usersSlice = createSlice({
       state.error = action.payload.message;
     },
   }
-})
+});
 
 export default usersSlice.reducer;

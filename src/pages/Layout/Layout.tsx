@@ -1,6 +1,5 @@
-import { Outlet } from "react-router-dom"
-import { Header } from "../../components"
-import { AppWrapper } from "./styled"
+import { Outlet } from 'react-router-dom';
+import { Header } from '../../components';
 
 export const Layout = () => {
   return (
@@ -8,5 +7,5 @@ export const Layout = () => {
       <Header />
       <Outlet />
     </>
-  )
-}
+  );
+};

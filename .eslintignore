@@ -1,0 +1,10 @@
+build/*.js
+config/*.js
+yarn.lock
+tsconfig.json
+public/*
+README.md
+db.json
+package.json
+index.css
+yarn-error.log

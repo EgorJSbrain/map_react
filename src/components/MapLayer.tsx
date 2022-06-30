@@ -1,5 +1,5 @@
-import { TileLayer } from "react-leaflet";
-import { MAP_ATTRIBUTION, MAP_URL } from "../constants";
+import { TileLayer } from 'react-leaflet';
+import { MAP_ATTRIBUTION, MAP_URL } from '../constants';
 
 export const MapLayer = () => (
   <TileLayer

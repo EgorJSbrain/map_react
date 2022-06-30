@@ -1,4 +1,4 @@
-import { PlaceType } from "./place";
+import { PlaceType } from './place';
 
 export type PointDto = {
   description: string;

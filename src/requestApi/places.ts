@@ -1,8 +1,8 @@
-import { instanceMapApi } from "../axios";
+import { instanceMapApi } from '../axios';
 
 export const placeApi = {
   search: async (searchText: string) => {
-    const { data } = await instanceMapApi.get("search", {
+    const { data } = await instanceMapApi.get('search', {
       params: {
         q: searchText,
       },
@@ -11,7 +11,7 @@ export const placeApi = {
     return data;
   },
   getPlaces: async (lat: number, lon: number) => {
-    const { data } = await instanceMapApi.get("reverse", {
+    const { data } = await instanceMapApi.get('reverse', {
       params: {
         lat,
         lon,

@@ -1,5 +1,5 @@
-import { Box, TextField } from "@mui/material";
-import styled from "styled-components";
+import { Box, TextField } from '@mui/material';
+import styled from 'styled-components';
 
 export const CentredWrapper = styled(Box)`
   display: flex;
@@ -60,4 +60,4 @@ export const LinkBoxInfo = styled(Box)`
 export const LinkBox = styled(Box)`
   text-decoration: underline;
   cursor: pointer;
-`
+`;

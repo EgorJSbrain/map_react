@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { PointType } from "../../types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import { PointType } from '../../types';
 import {
   pointsAllRequest,
   pointCreate,
   pointDelete,
   pointEdit,
-} from "../actions";
+} from '../actions';
 
 interface PointsState {
   points: PointType[];
@@ -18,7 +18,7 @@ const initialState: PointsState = {
   points: [],
   isLoading: false,
   error: '',
-}
+};
 
 const pointsSlice = createSlice({
   name: 'points',
@@ -64,7 +64,7 @@ const pointsSlice = createSlice({
     [pointEdit.fulfilled.type]: (state, action: PayloadAction<PointType>) => {
       state.isLoading = false;
       state.error = '';
-      state.points = [...state.points.filter(point => point.id !== action.payload.id), action.payload]
+      state.points = [...state.points.filter(point => point.id !== action.payload.id), action.payload];
     },
     [pointEdit.pending.type]: (state) => {
       state.isLoading = true;
@@ -74,6 +74,6 @@ const pointsSlice = createSlice({
       state.error = action.payload.message;
     },
   }
-})
+});
 
 export default pointsSlice.reducer;

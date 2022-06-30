@@ -1,6 +1,6 @@
-import { Input, Typography } from "@mui/material";
-import { CardType } from "../../types";
-import { CardDescription, CardItem, CardStatus, ImgBox, Info, PhotoIcon } from "./styled";
+import { Typography } from '@mui/material';
+import { CardType } from '../../types';
+import { CardDescription, CardItem, CardStatus, ImgBox, Info, PhotoIcon } from './styled';
 
 interface CardProps {
   card: CardType;
@@ -23,5 +23,5 @@ export const Card = ({card}: CardProps) => {
 
       {card.status && <CardStatus>{card.status}</CardStatus>}
     </CardItem>
-  )
-}
+  );
+};

@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useState } from "react";
-import { Map, Search } from "../../components";
-import { PlaceModal } from "../../components/Modals";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { placeApi } from "../../requestApi";
-import { cardCreate, pointDelete, pointsAllRequest } from "../../store/actions";
-import { userSet } from "../../store/reducers/authSlice";
-import { getPoints } from "../../store/selectors";
-import { CardStatuses, PointType } from "../../types";
-import { PlaceType } from "../../types/place";
-import { AddPoint, AddPointIcon, AppWrapper } from "./styled";
+import { useCallback, useEffect, useState } from 'react';
+import { Map, Search } from '../../components';
+import { PlaceModal } from '../../components/Modals';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { placeApi } from '../../requestApi';
+import { cardCreate, pointDelete, pointsAllRequest } from '../../store/actions';
+import { userSet } from '../../store/reducers/authSlice';
+import { getPoints } from '../../store/selectors';
+import { CardStatuses, PointType } from '../../types';
+import { PlaceType } from '../../types/place';
+import { AddPoint, AddPointIcon, AppWrapper } from './styled';
 
 export const SearchPage = () => {
   const dispatch = useAppDispatch();
@@ -21,11 +21,11 @@ export const SearchPage = () => {
 
   useEffect(() => {
     (async function () {
-      const user = localStorage.getItem("user");
+      const user = localStorage.getItem('user');
       dispatch(pointsAllRequest());
 
       if (user) {
-        const parsedUser = JSON.parse(user)
+        const parsedUser = JSON.parse(user);
         dispatch(userSet(parsedUser));
 
         if (!selectedPosition && user) {
@@ -70,11 +70,11 @@ export const SearchPage = () => {
     dispatch(
       cardCreate({
         point,
-        description: "",
+        description: '',
         status: CardStatuses.new,
       })
     );
-  }, []);
+  }, [dispatch]);
 
   return (
     <AppWrapper data-testid="search-page">
@@ -106,4 +106,4 @@ export const SearchPage = () => {
       )}
     </AppWrapper>
   );
-}
+};

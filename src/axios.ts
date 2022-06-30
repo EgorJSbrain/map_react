@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const mapBaseUrl = 'https://nominatim.openstreetmap.org';
 export const baseUrl = 'http://localhost:3008';
@@ -9,11 +9,11 @@ export const instanceMapApi = axios.create({
 
 instanceMapApi.interceptors.request.use((config) => {
   config.params = {
-    format: "json",
+    format: 'json',
     addressdetails: '1',
     polygon_geojson: '0',
     ...config.params,
-  }
+  };
 
   return config;
 });

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HomePageWrapper = styled.div`
   background: url('./home.jpeg');
@@ -22,7 +22,7 @@ export const Cursor = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 2;
-`
+`;
 
 export const Sircle = styled.div`
   width: 60px;
@@ -34,7 +34,7 @@ export const Sircle = styled.div`
   opacity: .4;
   right: -16px;
   top: 98px;
-`
+`;
 
 export const HomeTitleWrapper = styled.div`
   height: 100%;

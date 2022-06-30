@@ -1,13 +1,13 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { CardType } from "../../types";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
+import { CardType } from '../../types';
 import {
   cardCreate,
   cardsAllRequest,
   // cardCreate,
   // cardDelete,
   // cardEdit,
-} from "../actions";
+} from '../actions';
 
 interface CardsState {
   cards: CardType[];
@@ -19,7 +19,7 @@ const initialState: CardsState = {
   cards: [],
   isLoading: false,
   error: '',
-}
+};
 
 const cardsSlice = createSlice({
   name: 'cards',
@@ -75,6 +75,6 @@ const cardsSlice = createSlice({
     //   state.error = action.payload.message;
     // },
   }
-})
+});
 
 export default cardsSlice.reducer;

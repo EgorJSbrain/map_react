@@ -1,6 +1,6 @@
-import { useCallback, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { StartModal } from "../../components";
+import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { StartModal } from '../../components';
 import {
   HomePageWrapper,
   HomeTitleWrapper,
@@ -8,7 +8,7 @@ import {
   Sircle,
   Cursor,
   StartButton,
-} from "./styled";
+} from './styled';
 
 const APP_TITLE = 'Touch';
 
@@ -22,7 +22,7 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <HomePageWrapper data-testid={"home-page"}>
+    <HomePageWrapper data-testid={'home-page'}>
       <HomeTitleWrapper>
         <HomeTitle>
           {APP_TITLE}
@@ -30,8 +30,8 @@ export const HomePage = () => {
           <Sircle />
         </HomeTitle>
 
-        <StartButton data-testid={"home-button"} tabIndex={4} onClick={handleModalVisible}>
-          {t("startBtn")}
+        <StartButton data-testid={'home-button'} tabIndex={4} onClick={handleModalVisible}>
+          {t('startBtn')}
         </StartButton>
       </HomeTitleWrapper>
 

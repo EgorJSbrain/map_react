@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { PlaceType } from "../../types/place";
-import { SearchList } from "./SearchList";
-import { useCheckScreenSize } from "../../hooks";
-import { debounce } from "../../utils";
-import { Input, SearchWrapper } from "./Search.styled";
-import { useTranslation } from "react-i18next";
-import { placeApi } from "../../requestApi";
+import { useCallback, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { PlaceType } from '../../types/place';
+import { useCheckScreenSize } from '../../hooks';
+import { debounce } from '../../utils';
+import { placeApi } from '../../requestApi';
+import { Input, SearchWrapper } from './Search.styled';
+import { SearchList } from './SearchList';
 
 type SearchProps = {
   handleSetPosition: (value: PlaceType) => void
@@ -27,6 +27,7 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
         setListVisible(true);
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.log(e);
     }
   }, []);
@@ -36,13 +37,13 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
   const onClick = useCallback((item: PlaceType) => {
     setListVisible(false);
     handleSetPosition(item);
-  }, []);
+  }, [handleSetPosition]);
 
   return (
     <SearchWrapper>
       <Input
-        variant={isMobile ? "standard" : "outlined"}
-        placeholder={t("address")}
+        variant={isMobile ? 'standard' : 'outlined'}
+        placeholder={t('address')}
         onChange={(event) => {
           debouncedChange(event.target.value);
         }}
@@ -51,4 +52,4 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
       {isListVisible && <SearchList listPlace={listPlace} onClick={onClick} />}
     </SearchWrapper>
   );
-}
+};

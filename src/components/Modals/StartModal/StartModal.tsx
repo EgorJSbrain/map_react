@@ -1,16 +1,16 @@
-import { Box } from "@mui/material";
-import { useCallback, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useAppDispatch } from "../../../hooks";
-import { usersAllRequest } from "../../../store/actions/users";
-import { ModalDialog } from "../../ModalDialog";
-import { LogIn } from "./LogIn";
-import { SignUp } from "./SignUp";
+import { Box } from '@mui/material';
+import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from '../../../hooks';
+import { usersAllRequest } from '../../../store/actions/users';
+import { ModalDialog } from '../../ModalDialog';
+import { LogIn } from './LogIn';
+import { SignUp } from './SignUp';
 
 export enum ContentTypes {
   signUp = 'sign-up',
   logIn = 'log-in',
-};
+}
 
 type UserModalProps = {
   isOpen: boolean;
@@ -35,11 +35,11 @@ export const StartModal = ({ isOpen, handleClose }: UserModalProps) => {
 
   return (
     <ModalDialog
-      title={t("modals.userModal.title")}
+      title={t('modals.userModal.title')}
       onClose={handleClose}
       open={isOpen}
     >
-      <Box data-testid={"home-modal"}>
+      <Box data-testid={'home-modal'}>
         {isSignUp && (
           <SignUp handleClose={handleClose} handleSetType={handleSetType} />
         )}

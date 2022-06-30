@@ -33,7 +33,7 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
-    "typescript": "^4.4.2",
+    "typescript": "^4.7.4",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -41,11 +41,17 @@
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!your-module-name)/\"",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 3008"
+    "server": "json-server --watch db.json --port 3008",
+    "lint": "eslint './**'",
+    "lint:fix": "eslint './**' --fix"
   },
   "devDependencies": {
     "@types/esri-leaflet-geocoder": "^2.2.3",
-    "@types/leaflet": "^1.7.10"
+    "@types/leaflet": "^1.7.10",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "eslint": "^8.18.0",
+    "eslint-plugin-react": "^7.30.1"
   },
   "browserslist": {
     "production": [

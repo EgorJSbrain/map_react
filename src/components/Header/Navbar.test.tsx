@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { Navbar } from "./Navbar";
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import userEvent from "@testing-library/user-event";
-import { App } from '../../App'
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
-import { store } from "../../store/store";
 import * as redux from 'react-redux';
+import { App } from '../../App';
+import { store } from '../../store/store';
+import { Navbar } from './Navbar';
 
 const routerRender = () => {
   render(
@@ -15,7 +15,7 @@ const routerRender = () => {
       </Provider>
     </MemoryRouter>
   );
-}
+};
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => {
@@ -32,10 +32,10 @@ jest.mock('react-redux', () => {
       useSelector: jest.fn().mockImplementation(() => {
           return {};
       }),
-  }
+  };
 });
 
-describe("HEADER TEST", () => {
+describe('HEADER TEST', () => {
   let spyOnUseSelector;
 
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe("HEADER TEST", () => {
     spyOnUseSelector.mockReturnValue({ id: 1 });
   });
 
-  test("render links", () => {
+  test('render links', () => {
     render(
       <MemoryRouter>
         <Navbar />
@@ -51,19 +51,21 @@ describe("HEADER TEST", () => {
     );
   });
 
-  test('test home link', () => {
+  test('home link', () => {
     routerRender();
 
-    const homeLink = screen.getByTestId('home-link')
+    const homeLink = screen.getByTestId('home-link');
     userEvent.click(homeLink);
+    // eslint-disable-next-line
     expect(screen.getByTestId('home-page')).toBeInTheDocument;
-  })
+  });
 
-  test('test search link', () => {
+  test('search link', () => {
     routerRender();
 
-    const searchLink = screen.getByTestId('search-link')
+    const searchLink = screen.getByTestId('search-link');
     userEvent.click(searchLink);
+    // eslint-disable-next-line
     expect(screen.getByTestId('search-page')).toBeInTheDocument;
-  })
+  });
 });

@@ -1,5 +1,5 @@
-import { Box } from "@mui/material";
-import styled, { css } from "styled-components";
+import { Box } from '@mui/material';
+import styled, { css } from 'styled-components';
 import AddPhotoAlternateOutlinedIcon from '@mui/icons-material/AddPhotoAlternateOutlined';
 
 export const Description = styled(Box)`
@@ -14,7 +14,7 @@ export  const IconsWrapper = styled(Box)`
   align-items: end;
   font-weight: 600;
   color: #6d6d6d;
-`
+`;
 
 const icon = css`
   cursor: pointer;
@@ -22,7 +22,7 @@ const icon = css`
   :hover {
     color: #333
   }
-`
+`;
 
 export const Edit = styled.div`
   ${icon}

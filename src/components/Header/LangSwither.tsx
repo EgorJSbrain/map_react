@@ -1,7 +1,8 @@
-import { Switch } from "@mui/material";
-import styled from "styled-components";
+import { Switch } from '@mui/material';
+import styled from 'styled-components';
 
-const MaterialUISwitch = styled(Switch)(({ theme }) => ({
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const MaterialUISwitch = styled(Switch)(theme => ({
   width: 62,
   height: 34,
   padding: 7,
@@ -13,12 +14,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       color: '#fff',
       transform: 'translateX(22px)',
       '& .MuiSwitch-thumb:before': {
-        backgroundImage: `url(./uk.svg)`,
+        backgroundImage: 'url(./uk.svg)',
       },
       '& + .MuiSwitch-track': {
         opacity: 1,
         marginLeft: 4,
-        backgroundImage: `url(./ru.svg)`,
+        backgroundImage: 'url(./ru.svg)',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'left',
       },
@@ -29,7 +30,7 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 32,
     height: 32,
     '&:before': {
-      content: "''",
+      content: '\'\'',
       position: 'absolute',
       width: '100%',
       height: '100%',
@@ -37,12 +38,12 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
       top: 0,
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
-      backgroundImage: `url(./ru.svg)`,
+      backgroundImage: 'url(./ru.svg)',
     },
   },
   '& .MuiSwitch-track': {
     opacity: 1,
-    backgroundImage: `url(./uk.svg)`,
+    backgroundImage: 'url(./uk.svg)',
     backgroundRepeat: 'no-repeat',
       backgroundPosition: 'right',
     borderRadius: 20 / 2,

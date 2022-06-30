@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { Popup } from "react-leaflet";
-import { PointType } from "../../types";
-import { PlaceType } from "../../types/place"
-import { AddCard, Delete, Description, Edit, IconsWrapper } from "./styled";
+import { Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
+import { Popup } from 'react-leaflet';
+import { PointType } from '../../types';
+import { PlaceType } from '../../types/place';
+import { AddCard, Delete, Description, Edit, IconsWrapper } from './styled';
 
 type MarkerPopupProps = {
   point: PlaceType | PointType;
@@ -23,12 +23,12 @@ export const MarkerPopup = ({
   return (
     <Popup>
       <Box>
-        {`${point.address.country || ""}${
-          point.address.city ? ", " + point.address.city : ""
-        }${point.address.town ? ", " + point.address.town : ""}${
+        {`${point.address.country || ''}${
+          point.address.city ? ', ' + point.address.city : ''
+        }${point.address.town ? ', ' + point.address.town : ''}${
           point.address.village
-            ? ", " + point.address.village
-            : ""
+            ? ', ' + point.address.village
+            : ''
         }`}
       </Box>
 
@@ -48,5 +48,5 @@ export const MarkerPopup = ({
           </IconsWrapper>
         )}
     </Popup>
-  )
+  );
 };

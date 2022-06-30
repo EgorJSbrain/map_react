@@ -1,5 +1,5 @@
-import { TextField } from "@mui/material";
-import styled from "styled-components";
+import { TextField } from '@mui/material';
+import styled from 'styled-components';
 
 export const Input = styled(TextField)`
   width: 100%;
@@ -9,7 +9,7 @@ export const Input = styled(TextField)`
       padding: 4px 12px 5px;
     }
   }
-`
+`;
 
 export const SearchWrapper = styled.div`
   position: relative;
