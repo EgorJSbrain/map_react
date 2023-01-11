@@ -11,7 +11,7 @@ export const CardsPage = () => {
 
   useEffect(() => {
     dispatch(cardsAllRequest())
-  }, []);
+  }, [dispatch]);
 
   return (
     <AppWrapper>

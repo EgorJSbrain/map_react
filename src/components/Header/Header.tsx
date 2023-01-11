@@ -23,7 +23,7 @@ export const Header = () => {
   const handleLogOut = useCallback(() => {
     dispatch(userLogOut());
     navigate("/app");
-  }, [navigate]);
+  }, [navigate, dispatch]);
 
   return (
     <HeaderWrapper isApp={isApp}>

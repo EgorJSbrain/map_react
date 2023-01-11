@@ -5,12 +5,6 @@ export enum CardStatuses {
   updated = "UPDATED",
 }
 
-enum CardTypes {
-  sightsign = "sightsign",
-  eat = "eat",
-  museum = "museum",
-}
-
 export type CardDto = {
   point: PointType;
   description: string;
