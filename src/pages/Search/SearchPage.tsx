@@ -74,7 +74,7 @@ export const SearchPage = () => {
         status: CardStatuses.new,
       })
     );
-  }, []);
+  }, [dispatch]);
 
   return (
     <AppWrapper data-testid="search-page">

@@ -46,7 +46,7 @@ export const LogIn = ({ handleSetType }: LogInProps) => {
         console.log(e);
       }
     },
-    [userAuth]
+    [dispatch]
   );
 
   return (

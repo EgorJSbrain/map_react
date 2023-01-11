@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { PlaceType } from "../../types/place";
 import { SearchList } from "./SearchList";
 import { useCheckScreenSize } from "../../hooks";
@@ -36,7 +36,7 @@ export const Search = ({ handleSetPosition }: SearchProps) => {
   const onClick = useCallback((item: PlaceType) => {
     setListVisible(false);
     handleSetPosition(item);
-  }, []);
+  }, [handleSetPosition]);
 
   return (
     <SearchWrapper>

@@ -1,4 +1,4 @@
-import { Input, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { CardType } from "../../types";
 import { CardDescription, CardItem, CardStatus, ImgBox, Info, PhotoIcon } from "./styled";
 

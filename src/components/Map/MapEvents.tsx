@@ -16,7 +16,7 @@ interface MapEventsProps {
 export const MapEvents = ({selectPosition, homePosition, handleSetPosition}: MapEventsProps) => {
   const map = useMap();
 
-  const setCenter = (lat: number, lng: number) => {
+  const setCenter = useCallback((lat: number, lng: number) => {
     map.setView(
       L.latLng(lat, lng),
       map.getZoom(),
@@ -24,19 +24,19 @@ export const MapEvents = ({selectPosition, homePosition, handleSetPosition}: Map
         animate: true
       }
     )
-  };
+  }, [map]);
 
   useEffect(() => {
     if (homePosition) {
       setCenter(Number(homePosition?.lat), Number(homePosition?.lon))
     }
-  }, [homePosition]);
+  }, [homePosition, setCenter]);
 
   useEffect(() => {
     if (selectPosition) {
       setCenter(Number(selectPosition.lat), Number(selectPosition.lon));
     }
-  }, [selectPosition, homePosition]);
+  }, [selectPosition, homePosition, setCenter]);
 
   const handleMapClick = useCallback(async (e: L.LeafletMouseEvent) => {
     try {
@@ -51,7 +51,7 @@ export const MapEvents = ({selectPosition, homePosition, handleSetPosition}: Map
     } catch (e) {
       console.log(e)
     }
-  }, []);
+  }, [handleSetPosition, setCenter]);
 
   useMapEvents({
     click: handleMapClick,
